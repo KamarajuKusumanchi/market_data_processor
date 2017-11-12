@@ -1,0 +1,4 @@
+cd ~/work/github/market_data_processor
+
+$/c/ProgramData/Anaconda3/python add_weeks.py 20170903 -17
+20170507
