@@ -3,12 +3,13 @@
 import sys
 from datetime import datetime, timedelta
 import argparse
+import pandas as pd
 
 # Script to add a given number of weeks to a date.
 
 # Todo:-
-# (1) Extend the script to any number of arguments. For example,
-# script_name <dt> offset1 offset2 offset3 ...
+# Add test cases with sample input and output.
+# Sample input and output can be found in expected_output.txt
 
 def parse_arguments(args):
     parser = argparse.ArgumentParser(
@@ -21,6 +22,7 @@ def parse_arguments(args):
     )
     parser.add_argument(
         "offset", action='store',
+        nargs='+',
         help='offset'
     )
     parser.add_argument(
@@ -36,8 +38,9 @@ def parse_arguments(args):
 def run_code():
     args = parse_arguments(sys.argv[1:])
 
+    debug = args.debug
+
     dt = args.dt
-    offset = int(args.offset)
     if len(dt) == 8:
         fmt = '%Y%m%d'
     elif len(dt) == 10:
@@ -46,8 +49,16 @@ def run_code():
         print('date = ', dt, ' is in unrecognizable format.')
         sys.exit(1)
 
-    new_dt = datetime.strptime(dt, fmt) + timedelta(weeks=offset)
-    print(new_dt.strftime(fmt))
+    offset = [int(x) for x in args.offset]
+    if debug:
+        print(offset)
+    df = pd.DataFrame({'offset':offset})
+    df['cum_offset'] = df['offset'].cumsum()
+    df['date'] = datetime.strptime(dt, fmt) + \
+                 pd.to_timedelta(df['cum_offset'], 'w')
+    if debug:
+        print(df)
+    print(df['date'].dt.strftime(fmt).to_string(index=False))
 
 
 if __name__ == "__main__":
