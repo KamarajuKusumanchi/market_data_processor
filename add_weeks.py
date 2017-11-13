@@ -11,10 +11,11 @@ import pandas as pd
 # Add test cases with sample input and output.
 # Sample input and output can be found in expected_output.txt
 
+
 def parse_arguments(args):
     parser = argparse.ArgumentParser(
         description='Add a given number of weeks to a date.',
-        formatter_class = argparse.ArgumentDefaultsHelpFormatter
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
     parser.add_argument(
         "dt", action='store',
@@ -35,6 +36,7 @@ def parse_arguments(args):
         print(res)
     return res
 
+
 def run_code():
     args = parse_arguments(sys.argv[1:])
 
@@ -52,10 +54,10 @@ def run_code():
     offset = [int(x) for x in args.offset]
     if debug:
         print(offset)
-    df = pd.DataFrame({'offset':offset})
+    df = pd.DataFrame({'offset': offset})
     df['cum_offset'] = df['offset'].cumsum()
     df['date'] = datetime.strptime(dt, fmt) + \
-                 pd.to_timedelta(df['cum_offset'], 'w')
+        pd.to_timedelta(df['cum_offset'], 'w')
     if debug:
         print(df)
     print(df['date'].dt.strftime(fmt).to_string(index=False))
