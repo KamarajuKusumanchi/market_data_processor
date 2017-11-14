@@ -15,7 +15,7 @@
         "out_file": "3.txt"
     },
     {
-        "tag": "yyyymmdd_mult_arg",
+        "tag": "iso_date_mult_arg",
         "cmd": ["python", "../add_weeks.py", "2017-09-03", "0", "-17", "-12", "-12"],
         "out_file": "4.txt"
     }
