@@ -6,11 +6,11 @@ import subprocess
 import pandas as pd
 
 # To run the tests
-# cd into this directory
-# python -m unittest discover
+# cd into the project directory
+# python -m unittest discover tests
 #
 # Sample run:
-# $python -m unittest discover
+# $python -m unittest discover tests
 # .
 # ----------------------------------------------------------------------
 # Ran 1 test in 0.005s

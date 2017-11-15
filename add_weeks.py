@@ -7,10 +7,6 @@ import pandas as pd
 
 # Script to add a given number of weeks to a date.
 
-# Todo:-
-# Add test cases with sample input and output.
-# Sample input and output can be found in expected_output.txt
-
 
 def parse_arguments(args):
     parser = argparse.ArgumentParser(
