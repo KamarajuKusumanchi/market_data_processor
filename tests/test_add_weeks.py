@@ -31,7 +31,9 @@ class functionalTestCase(unittest.TestCase):
     '''Test if the script is ok functionally or not'''
 
     def test_functional(self):
-        test_defs = pd.read_json('test_defs.json')
+        fname = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             'test_defs.json')
+        test_defs = pd.read_json(fname)
         for row in test_defs.itertuples():
             print('testing: ', row.cmd)
             # import time
