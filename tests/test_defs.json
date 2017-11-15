@@ -1,22 +1,22 @@
 [
     {
         "tag": "yyyymmdd_one_arg",
-        "cmd": ["python", "../add_weeks.py", "20170903", "-17"],
+        "cmd": ["python", "add_weeks.py", "20170903", "-17"],
         "out_file": "1.txt"
     },
     {
         "tag": "yyyymmdd_mult_arg",
-        "cmd": ["python", "../add_weeks.py", "20170903", "0", "-17", "-12", "-12"],
+        "cmd": ["python", "add_weeks.py", "20170903", "0", "-17", "-12", "-12"],
         "out_file": "2.txt"
     },
     {
         "tag": "iso_date_one_arg",
-        "cmd": ["python", "../add_weeks.py", "2017-09-03", "-17"],
+        "cmd": ["python", "add_weeks.py", "2017-09-03", "-17"],
         "out_file": "3.txt"
     },
     {
         "tag": "iso_date_mult_arg",
-        "cmd": ["python", "../add_weeks.py", "2017-09-03", "0", "-17", "-12", "-12"],
+        "cmd": ["python", "add_weeks.py", "2017-09-03", "0", "-17", "-12", "-12"],
         "out_file": "4.txt"
     }
 ]
