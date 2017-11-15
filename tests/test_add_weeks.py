@@ -23,7 +23,7 @@ class Pep8ConformanceTestCase(unittest.TestCase):
 
     def test_pep8_conformance(self):
         self.pep8style = pep8.StyleGuide(show_source=True)
-        files = (['../add_weeks.py'])
+        files = (['add_weeks.py'])
         self.pep8style.check_files(files)
         self.assertEqual(self.pep8style.options.report.total_errors, 0)
 
