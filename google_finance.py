@@ -18,8 +18,10 @@ def run_query(params):
     df = pd.DataFrame()
     if output == 'csv':
         df = pd.read_csv(full_url)
-        # Todo:- The date returned in dd-mon-yy format. Change it to
+        # The date is returned in dd-mon-yy format. Change it to
         # yyyy-mm-dd format.
+        df['Date'] = pd.to_datetime(df['Date'], format='%d-%b-%y')
+        df['Ticker'] = params.get('q', None)
     else:
         print("Only csv output is supported. But output is set to", output)
     return df
