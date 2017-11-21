@@ -1,6 +1,5 @@
 
 import unittest
-import pep8
 import os
 import subprocess
 import pandas as pd
@@ -18,15 +17,6 @@ import pandas as pd
 # OK
 
 
-class Pep8ConformanceTestCase(unittest.TestCase):
-    '''Test that all code conforms to pep8 standard'''
-
-    def test_pep8_conformance(self):
-        self.pep8style = pep8.StyleGuide(show_source=True)
-        files = (['add_weeks.py'])
-        self.pep8style.check_files(files)
-        self.assertEqual(self.pep8style.options.report.total_errors, 0)
-
 class functionalTestCase(unittest.TestCase):
     '''Test if the script is ok functionally or not'''
 
@@ -38,7 +28,8 @@ class functionalTestCase(unittest.TestCase):
             print('testing: ', row.cmd)
             # import time
             # start = time.time()
-            obtained = subprocess.check_output(row.cmd, universal_newlines=True)
+            obtained = subprocess.check_output(row.cmd,
+                                               universal_newlines=True)
             # print("time taken = ", time.time()-start)
             with open(row.out_file, 'r') as fh:
                 expected = fh.read()

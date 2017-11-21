@@ -2,7 +2,7 @@ language: python
 python:
   - "3.6"
 install:
-  - pip install pep8 pandas
+  - "pip install pep8 pandas"
 # command to run tests
 script:
   - python -m unittest discover tests
