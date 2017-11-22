@@ -1,0 +1,2 @@
+[https://travis-ci.org/KamarajuKusumanchi/market_data_processor 
+[[File:https://travis-ci.org/KamarajuKusumanchi/market_data_processor.svg?branch=master|Build Status]]]
