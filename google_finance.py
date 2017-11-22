@@ -1,6 +1,8 @@
 # Get data from google finance
 import pandas as pd
 import urllib
+
+
 def run_query(param):
     '''
     :param param: dictionary of parameters
