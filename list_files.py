@@ -19,6 +19,11 @@ def list_files_by_extension(path, extension):
 def list_python_files(path):
     return list_files_by_extension(path, '.py')
 
+
+def list_csv_files(path):
+    return list_files_by_extension(path, '.csv')
+
+
 if __name__ == "__main__":
     # files = list_files_by_extension('.', '.py')
     # files = list_files_by_extension('.', ('.py'))
