@@ -19,5 +19,6 @@ def get_recent_prices(ticker, ndays=30):
     start_date = end_date - timedelta(days=ndays)
     return web.DataReader(ticker, 'yahoo', start_date, end_date)
 
+
 if __name__ == "__main__":
     pass
