@@ -28,5 +28,6 @@ def run_query(param):
         print("Only csv output is supported. But output is set to", output)
     return df
 
+
 if __name__ == "__main__":
     run_query()

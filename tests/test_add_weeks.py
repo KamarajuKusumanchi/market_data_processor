@@ -6,10 +6,10 @@ import pandas as pd
 
 # To run the tests
 # cd into the project directory
-# python -m unittest discover tests
+# python3 -m unittest discover tests
 #
 # Sample run:
-# $python -m unittest discover tests
+# $python3 -m unittest discover tests
 # .
 # ----------------------------------------------------------------------
 # Ran 1 test in 0.005s
@@ -34,6 +34,7 @@ class functionalTestCase(unittest.TestCase):
             with open(row.out_file, 'r') as fh:
                 expected = fh.read()
                 self.assertEqual(obtained, expected, row.tag)
+
 
 if __name__ == '__main__':
     unittest.main()

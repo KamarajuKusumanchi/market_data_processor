@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 '''Script to get the list of S&P 500 tickers'''
 import requests
