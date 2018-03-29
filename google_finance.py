@@ -15,6 +15,7 @@ def run_query(param):
     '''
     base_url = 'https://finance.google.com/finance/historical'
     full_url = base_url + '?' + urllib.parse.urlencode(param)
+    # print(full_url)
     output = param.get('output', None)
 
     df = pd.DataFrame()

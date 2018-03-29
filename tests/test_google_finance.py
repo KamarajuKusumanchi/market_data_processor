@@ -12,7 +12,7 @@ import google_finance
 
 
 class googleFinanceTestCase(unittest.TestCase):
-    @unittest.skip("Not working. Google may have changed api?")
+    # @unittest.skip("Not working. Google may have changed api?")
     def test_run_query(self):
         '''Test the results of a simple query'''
         param = {'q': 'WMT',
