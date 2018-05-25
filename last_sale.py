@@ -24,14 +24,17 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 
+
 def get_html(url):
     # Get html from url
     response = requests.get(url)
     return response.text
 
+
 def dump_string(str, fname):
     with open(fname, 'w') as fh:
         fh.write(str)
+
 
 def extract_info(html):
     # take html extract faculty info return list of dictionaries
@@ -42,8 +45,10 @@ def extract_info(html):
     }
     # For percentage change, the direction (whether a stock went up or down) is
     # encoded in the widget color.
-    # <div id="qwidget_percent" class="qwidget-percent qwidget-Green" style="white-space:nowrap">20.41%</div>
-    # <div id="qwidget_percent" class="qwidget-percent qwidget-Red" style="white-space:nowrap">0.21%</div
+    # <div id="qwidget_percent" class="qwidget-percent qwidget-Green"
+    #  style="white-space:nowrap">20.41%</div>
+    # <div id="qwidget_percent" class="qwidget-percent qwidget-Red"
+    #  style="white-space:nowrap">0.21%</div
     qwidget_percent = soup.select("div#qwidget_percent")[0]
     pct_change = qwidget_percent.text
     if 'qwidget-Red' in qwidget_percent.get('class'):
