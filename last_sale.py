@@ -38,6 +38,7 @@ def dump_string(str, fname):
 
 def extract_info(html):
     # take html extract faculty info return list of dictionaries
+    # Todo:- Add a test case for this function.
     soup = BeautifulSoup(html, "lxml")
     stock = {
         "name": soup.select("div#qwidget_pageheader h1")[0].text,
