@@ -8,12 +8,33 @@
 from bs4 import BeautifulSoup
 import requests
 import sys
+import re
+import json
+import pandas as pd
 
 
 def get_html(url):
     # Get html from url
     response = requests.get(url)
     return response.text
+
+
+def print_full(df):
+    # To print all columns in the same line
+    # See https://stackoverflow.com/a/25415404/6305733
+    pd.set_option('display.expand_frame_repr', False)
+    print(df)
+
+
+def extract_info(html):
+    # Todo:- Add a test case for this function.
+    soup = BeautifulSoup(html, "lxml")
+    body = soup.find("body")
+    script = body.find("script", {"type": "text/javascript"})
+    regex = r"window.__bloomberg__.bootstrapData\s*=\s*(.*);"
+    data = json.loads(re.search(regex, script.get_text()).group(1))
+    df = pd.DataFrame.from_dict(data['keyStats']['keyStatsList'])
+    return df
 
 
 if __name__ == "__main__":
@@ -25,3 +46,8 @@ if __name__ == "__main__":
     with open(out_file, 'w') as fh:
         print('writing', out_file)
         fh.write(html)
+    # # read the data back
+    # with open(out_file, "r") as fh:
+    #     html = fh.read()
+    result = extract_info(html)
+    print_full(result)
