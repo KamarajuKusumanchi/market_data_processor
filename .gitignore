@@ -2,5 +2,8 @@
 __pycache__/
 *.pyc
 
+# Unit test / coverage reports
+.cache
+
 # Pycharm files
 .idea/
