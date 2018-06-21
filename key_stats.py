@@ -25,4 +25,3 @@ if __name__ == "__main__":
     with open(out_file, 'w') as fh:
         print('writing', out_file)
         fh.write(html)
-
