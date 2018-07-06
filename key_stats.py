@@ -11,14 +11,13 @@ import sys
 import re
 import json
 import pandas as pd
+from fake_useragent import UserAgent
 
 
 def get_html(url):
     # Get html from url
-    user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) ' \
-        'AppleWebKit/537.36 (KHTML, like Gecko) ' \
-        'Chrome/66.0.3359.139 Safari/537.36'
-    header = {'User-Agent': user_agent}
+    ua = UserAgent(cache=False)
+    header = {'User-Agent': ua.chrome}
     response = requests.get(url, headers=header)
     return response.text
 
