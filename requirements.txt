@@ -3,3 +3,4 @@ pep8
 pandas-datareader
 bs4
 fake_useragent
+requests
