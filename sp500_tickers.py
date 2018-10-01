@@ -4,6 +4,8 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+from datetime import datetime
+import sys
 
 
 def get_sp500_table():
@@ -36,8 +38,21 @@ def get_sp500_tickers():
     return get_sp500_table()['Ticker symbol'].tolist()
 
 
+def get_sp500_df():
+    table = get_sp500_table()
+    today = datetime.today().strftime('%Y%m%d')
+    # This will give a dataframe with YYYYMMDD as the row index, tickers as
+    # columns.
+    tickers = table[['Ticker symbol']].T\
+        .rename({'Ticker symbol': today})
+    return tickers
+
 if __name__ == "__main__":
     # from time import time
     # start = time()
-    print(*get_sp500_tickers(), sep='\n')
+
+    # print(*get_sp500_tickers(), sep='\n')
+    tickers = get_sp500_df()
+    tickers.to_csv(sys.stdout, header=False)
+
     # print("time taken = ", time()-start, " s")
