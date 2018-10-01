@@ -43,7 +43,8 @@ def get_sp500_df():
     today = datetime.today().strftime('%Y%m%d')
     # This will give a dataframe with YYYYMMDD as the row index, tickers as
     # columns.
-    tickers = table[['Ticker symbol']].T\
+    tickers = table[['Ticker symbol']]\
+        .sort_values(by='Ticker symbol').T\
         .rename({'Ticker symbol': today})
     return tickers
 
