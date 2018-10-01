@@ -44,7 +44,8 @@ def get_sp500_df():
     # This will give a dataframe with YYYYMMDD as the row index, tickers as
     # columns.
     tickers = table[['Ticker symbol']]\
-        .sort_values(by='Ticker symbol').T\
+        .sort_values(by='Ticker symbol')\
+        .transpose()\
         .rename({'Ticker symbol': today})
     return tickers
 
