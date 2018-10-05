@@ -60,4 +60,4 @@ if __name__ == '__main__':
     # set the column order
     col = ['date', 'symbol', 'sharesOutstanding']
     df = df[col]
-    print(df)
+    df.to_csv(sys.stdout, index=False)
