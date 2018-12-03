@@ -35,7 +35,8 @@ def get_sp500_table():
 
 def get_sp500_tickers():
     '''Get the list of S&P 500 tickers'''
-    return get_sp500_table()['Ticker symbol'].tolist()
+    coi = 'Symbol'
+    return get_sp500_table()[coi].tolist()
 
 
 def get_sp500_df():
@@ -43,10 +44,11 @@ def get_sp500_df():
     today = datetime.today().strftime('%Y%m%d')
     # This will give a dataframe with YYYYMMDD as the row index, tickers as
     # columns.
-    tickers = table[['Ticker symbol']]\
-        .sort_values(by='Ticker symbol')\
+    coi = 'Symbol'
+    tickers = table[[coi]]\
+        .sort_values(by=coi)\
         .transpose()\
-        .rename({'Ticker symbol': today})
+        .rename({coi: today})
     return tickers
 
 if __name__ == "__main__":
