@@ -51,6 +51,7 @@ def get_sp500_df():
         .rename({coi: today})
     return tickers
 
+
 if __name__ == "__main__":
     # from time import time
     # start = time()

@@ -22,12 +22,15 @@ class Pep8ConformanceTestCase(unittest.TestCase):
     '''Test that all code conforms to pep8 standard'''
 
     def test_pep8_conformance(self):
-        pep8style = StyleGuide(show_source=True)
+        # Ignore the following errors:
+        # E501 line too long (xxx > 79 characters)
+        pep8style = StyleGuide(show_source=True, ignore=['E501'])
         # files = (['add_weeks.py', 'google_finance.py'])
         from list_files import list_python_files
         files = list_python_files('.')
         print('Checking', files, 'for pep8 conformance.')
-        pep8style.check_files(files)
+        report = pep8style.check_files(files)
+        report.print_statistics()
         self.assertEqual(pep8style.options.report.total_errors, 0)
 
 
