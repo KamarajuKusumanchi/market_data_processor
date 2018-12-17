@@ -17,6 +17,8 @@ except ImportError:
 #
 # OK
 
+# Note:- If you are copy pasting code from here, see rutils/python3/tests/test_codestyle.py first.
+# It also uses pycodestyle but uses pytest instead of unittest
 
 class Pep8ConformanceTestCase(unittest.TestCase):
     '''Test that all code conforms to pep8 standard'''
