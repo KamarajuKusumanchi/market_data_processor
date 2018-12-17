@@ -18,8 +18,8 @@ class IexData:
         url = self.ROOT_URL + '/stock/' + symbol + '/quote?displayPercent=true'
         request = requests.get(url)
         # return empty dictionary if an error occurs
-        if request.status_code > 299 or request.status_code < 200:
-            print('Error retrieving quotes: ' + request.status_code)
+        if request.status_code != requests.codes.ok:
+            print('Error: retrieving quotes: ', request.status_code)
             return {}
         return request.json()
 
@@ -29,7 +29,7 @@ class Display:
     def quote(self, data):
         # data = self.iex_data.get_quote(symbol)
         if not data:
-            print('Error: could not read quotes')
+            print('Error: reading quotes')
             return
         # print(data)
 
@@ -40,8 +40,8 @@ class Display:
         #     print('{}: {}'.format(field, data[field]))
 
         print('Name: {}'.format(data['companyName']))
-        print('Price: ${}'.format(data['latestPrice']))
-        print('Change: {}%'.format(data['changePercent']))
+        print('Price: ${0:.2f}'.format(data['latestPrice']))
+        print('Change: {0:.2f}%'.format(data['changePercent']))
 
 if __name__ == '__main__':
     iex_data = IexData()
