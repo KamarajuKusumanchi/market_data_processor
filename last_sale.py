@@ -10,6 +10,7 @@ import sys
 # See https://github.com/ilemus/fundamentals/blob/master/src/retrieve/iextrading.py
 # It contains a lot of functions to retrieve data from IEX
 
+
 class IexData:
     ROOT_URL = 'https://api.iextrading.com/1.0/'
 
@@ -22,6 +23,7 @@ class IexData:
             print('Error: retrieving quotes: ', request.status_code)
             return {}
         return request.json()
+
 
 class Display:
     # iex_data = IexData()
@@ -42,6 +44,7 @@ class Display:
         print('Name: {}'.format(data['companyName']))
         print('Price: ${0:.2f}'.format(data['latestPrice']))
         print('Change: {0:.2f}%'.format(data['changePercent']))
+
 
 if __name__ == '__main__':
     iex_data = IexData()
