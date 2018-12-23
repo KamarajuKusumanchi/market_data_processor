@@ -1,3 +1,4 @@
+# Add sp500 tickers to the universe
 # Sample usage:
 # $python ./add_sp500_tickers_to_univ.py > ../market_data/universe/new_univ
 # cd ../market_data/universe
