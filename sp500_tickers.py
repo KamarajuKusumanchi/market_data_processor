@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime
 import sys
-from urllib.parse import quote
+# from urllib.parse import quote
 
 
 def get_sp500_table(filter_columns=None):
@@ -23,8 +23,8 @@ def get_sp500_table(filter_columns=None):
     """
     # Todo:- Add a test case for this function.
 
-    # url = "https://en.wikipedia.org/wiki/List_of_S&P_500_companies"
-    url = "https://" + quote("en.wikipedia.org/wiki/List_of_S&P_500_companies")
+    url = "https://en.wikipedia.org/wiki/List_of_S&P_500_companies"
+    # url = "https://" + quote("en.wikipedia.org/wiki/List_of_S&P_500_companies")
     # print(url)
 
     resp = requests.get(url)
