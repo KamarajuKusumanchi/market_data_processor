@@ -1,3 +1,10 @@
+#! /usr/bin/env python3
+
+'''Script to get shares outstanding
+To get outstanding shares of all sp500 stocks, do
+./sp500_tickers.py | cut -d ',' -f 2- | ./shares_outstanding.py
+'''
+
 import pandas as pd
 import numpy as np
 import requests
