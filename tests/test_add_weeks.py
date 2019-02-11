@@ -18,7 +18,7 @@ import pandas as pd
 
 
 class functionalTestCase(unittest.TestCase):
-    '''Test if the script is ok functionally or not'''
+    '''Test if the script is ok functionally or not.'''
 
     def test_functional(self):
         fname = os.path.join(os.path.dirname(os.path.abspath(__file__)),
