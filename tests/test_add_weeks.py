@@ -28,8 +28,14 @@ class functionalTestCase(unittest.TestCase):
             print('testing: ', row.cmd)
             # import time
             # start = time.time()
+
+            # For some reason, when tests are run on Travis, a space is
+            # getting added at the front. For example, getting ' 20170507'
+            # instead of '20170507'. Using lstrip() until we figure out
+            # what is going on.
             obtained = subprocess.check_output(row.cmd,
-                                               universal_newlines=True)
+                                               universal_newlines=True)\
+                .lstrip()
             # print("time taken = ", time.time()-start)
             with open(row.out_file, 'r') as fh:
                 expected = fh.read()
