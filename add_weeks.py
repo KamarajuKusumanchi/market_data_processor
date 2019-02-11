@@ -56,7 +56,7 @@ def run_code():
         pd.to_timedelta(df['cum_offset'], 'w')
     if debug:
         print(df)
-    print(df['date'].dt.strftime(fmt).to_string(index=False), sep='')
+    print(df['date'].dt.strftime(fmt).to_string(index=False).lstrip())
 
 
 if __name__ == "__main__":
