@@ -61,7 +61,9 @@ def update_start_and_end_dates(options):
 
 
 def get_datetime(a):
-    return datetime.strptime(a, '%Y%m%d')
+    # Handle YYYY-MM-DD
+    dt_Ymd = a.replace('-', '')
+    return datetime.strptime(dt_Ymd, '%Y%m%d')
 
 
 if __name__ == '__main__':
@@ -69,4 +71,4 @@ if __name__ == '__main__':
     options = copy.deepcopy(orig_options)
     update_start_and_end_dates(options)
     df = get_ohlc(options.ticker, options.start_date, options.end_date)
-    print(df)
+    print(df.reset_index().to_string(index=False))
