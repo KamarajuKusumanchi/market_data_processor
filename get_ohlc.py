@@ -28,6 +28,10 @@ def parse_arguments():
 
 
 def update_start_and_end_dates(options):
+    # Get the start and end dates based on the options provided by the user.
+    # For example if user specified start date and period, we will use that
+    # information to compute the end date etc.,
+    #
     # options will be overwritten with new start and end dates as necessary.
     if options.start_date is not None:
         options.start_date = get_datetime(options.start_date)
