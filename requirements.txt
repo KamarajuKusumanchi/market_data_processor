@@ -1,5 +1,5 @@
 pandas >= 0.19.2
-pep8
+pycodestyle
 pandas-datareader
 bs4
 fake_useragent
