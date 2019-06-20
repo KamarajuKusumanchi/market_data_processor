@@ -35,9 +35,14 @@ def get_sp500_table(filter_columns=None):
     rows = table.findAll('tr')
     # The first row is the header of the table. Each cell in the header is
     # delimited by <th>..</th>
-    columns = [x.text for x in rows[0].findAll('th')]
+    # Note:- Sometimes <th>, </th> might be on different lines such as
+    #   <th><a href="/wiki/Symbol" title="Symbol">Symbol</a>
+    #   </th>
+    # then x.text will give "Symbol\n". The strip() removes these trailing
+    # newline characters and gives "Symbol"
+    columns = [x.text.strip() for x in rows[0].findAll('th')]
     # The cells in each row are delimited by <td>..</td>
-    df = pd.DataFrame([[cell.text
+    df = pd.DataFrame([[cell.text.strip()
                         for cell in row.findAll('td')]
                        for row in rows[1:]],
                       columns=columns)
