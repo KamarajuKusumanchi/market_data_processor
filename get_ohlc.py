@@ -9,6 +9,9 @@ from dateutil.relativedelta import relativedelta
 
 def get_ohlc(ticker, start, end):
     df = web.DataReader(ticker, 'iex', start, end)
+    # df = web.DataReader(ticker, 'morningstar', start, end)
+    # df = web.DataReader(ticker, 'enigma', start, end)
+    # df = web.DataReader(ticker, 'quandl', start, end)
     return df
 
 
