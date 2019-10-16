@@ -24,5 +24,8 @@ __pycache__
 .cache
 .pytest_cache/
 
+# Jupyter Notebook
+.ipynb_checkpoints
+
 # Pycharm files
 .idea/
