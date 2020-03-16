@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import sys
+import os
 from datetime import datetime
 import argparse
 import pandas as pd
@@ -56,7 +57,13 @@ def run_code():
         pd.to_timedelta(df['cum_offset'], 'w')
     if debug:
         print(df)
-    print(df['date'].dt.strftime(fmt).to_string(index=False))
+    # This is adding one space at the beginning.
+    # print(df['date'].dt.strftime(fmt).to_string(index=False))
+    # This is printing extra lines at the end.
+    # print(df['date'].dt.strftime(fmt).to_csv(index=False, header=None))
+    dates = df['date'].dt.strftime(fmt)
+    for i in dates:
+        print(i)
 
 
 if __name__ == "__main__":

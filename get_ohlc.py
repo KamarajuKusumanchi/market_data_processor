@@ -49,14 +49,12 @@ def update_start_and_end_dates(options):
             if options.period is None:
                 options.period = ndays
             options.end_date = t1
-        options.start_date = (options.end_date
-                              + relativedelta(days=-options.period))
+        options.start_date = (options.end_date + relativedelta(days=-options.period))
     else:
         if options.end_date is None:
             if options.period is None:
                 options.period = ndays
-            options.end_date = (options.start_date
-                                + relativedelta(days=options.period))
+            options.end_date = (options.start_date + relativedelta(days=options.period))
 
     if options.period and \
        (options.end_date - options.start_date).days != options.period:
