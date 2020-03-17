@@ -12,3 +12,8 @@ dependencies:
   - python=3.8
   - pandas
   - pycodestyle
+  # As per https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas we need
+  # BeautifulSoup4, html5lib, and lxml for read_html.
+  - BeautifulSoup4
+  - lxml
+  - html5lib
