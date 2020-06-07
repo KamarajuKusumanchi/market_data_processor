@@ -1,7 +1,9 @@
 import pandas as pd
 
 if __name__ == '__main__':
-    df = pd.read_html('https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/testing-in-us.html')[0]
+    # url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/testing-in-us.html'
+    url = 'https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/previous-testing-in-us.html'
+    df = pd.read_html(url)[0]
     # Remove the footnote symbols
     # The website was initially using '‡' as a footnote symbol.
     # But later changed it to '§'. So we can't use something like
