@@ -9,7 +9,7 @@ name: market_data_processor
 channels:
   - defaults
 dependencies:
-  - python=3.8
+  - python=3.10
   - pandas
   - pycodestyle
   # As per https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas we need
@@ -17,3 +17,6 @@ dependencies:
   - BeautifulSoup4
   - lxml
   - html5lib
+  - pip
+  - pip:
+    - finvizfinance
