@@ -1,4 +1,5 @@
 #! /usr/bin/env python3
+import textwrap
 
 from finvizfinance.quote import finvizfinance
 
@@ -24,7 +25,10 @@ def run_code():
     ticker = args.ticker
     stock = finvizfinance(ticker)
     description = stock.ticker_description()
-    print(description)
+    # To make it consistent with vim's gq command.
+    width=79
+    display_string = textwrap.fill(description, width)
+    print(display_string)
 
 
 if __name__ == "__main__":
