@@ -25,7 +25,7 @@ def run_code():
     ticker = args.ticker
     stock = finvizfinance(ticker)
     description = stock.ticker_description()
-    # To make it consistent with vim's gq command.
+    # To make the output look same as what we get from vim's gq command.
     width=79
     display_string = textwrap.fill(description, width)
     print(display_string)
