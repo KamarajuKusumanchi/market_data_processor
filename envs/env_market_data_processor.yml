@@ -4,6 +4,8 @@
 #   conda env update -f <filename>
 # To export the environment
 #   conda env export
+# To remove an environment
+#   conda env remove --name <env_name>
 
 name: market_data_processor
 channels:
@@ -16,6 +18,7 @@ dependencies:
     # Ref:- https://github.com/pydata/pandas-datareader/releases/tag/v0.10.0
   - pandas-datareader >= 0.10
   - pycodestyle
+  - ipython
   # As per https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas we need
   # BeautifulSoup4, html5lib, and lxml for read_html.
   - BeautifulSoup4
