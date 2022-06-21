@@ -6,6 +6,14 @@ from finvizfinance.quote import finvizfinance
 import argparse
 
 
+def run_code():
+    parser = create_parser()
+    args = parser.parse_args()
+    ticker = args.ticker
+    description = get_description(ticker)
+    print(description)
+
+
 def create_parser():
     parser = argparse.ArgumentParser(
         description='Get company description from ticker'
@@ -19,16 +27,17 @@ def create_parser():
     return parser
 
 
-def run_code():
-    parser = create_parser()
-    args = parser.parse_args()
-    ticker = args.ticker
+def get_description(ticker):
     stock = finvizfinance(ticker)
-    description = stock.ticker_description()
+    raw_description = stock.ticker_description()
+    description = format_line(raw_description)
+    return description
+
+def format_line(line):
     # To make the output look same as what we get from vim's gq command.
     width=79
-    display_string = textwrap.fill(description, width)
-    print(display_string)
+    lines = textwrap.fill(line, width)
+    return lines
 
 
 if __name__ == "__main__":
