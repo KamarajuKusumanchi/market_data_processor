@@ -13,11 +13,11 @@ channels:
 dependencies:
   - python=3.10
   - pandas
+  - pycodestyle
     # Need pandas-datareader >= 0.10.0 as it has fixed yahoo reader which now
     # require headers.
     # Ref:- https://github.com/pydata/pandas-datareader/releases/tag/v0.10.0
   - pandas-datareader >= 0.10
-  - pycodestyle
   - ipython
   # As per https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas we need
   # BeautifulSoup4, html5lib, and lxml for read_html.
@@ -26,4 +26,5 @@ dependencies:
   - html5lib
   - pip
   - pip:
+    - fake-useragent
     - finvizfinance
