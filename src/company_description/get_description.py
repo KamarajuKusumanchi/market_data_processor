@@ -15,14 +15,14 @@ def run_code():
 
 
 def create_parser():
-    parser = argparse.ArgumentParser(
-        description='Get company description from ticker'
-    )
-    parser.add_argument('ticker', action='store', help='ticker')
+    parser = argparse.ArgumentParser(description="Get company description from ticker")
+    parser.add_argument("ticker", action="store", help="ticker")
     parser.add_argument(
-        "--debug", action="store_true",
-        default=False, dest='debug',
-        help='show debug output'
+        "--debug",
+        action="store_true",
+        default=False,
+        dest="debug",
+        help="show debug output",
     )
     return parser
 
@@ -33,9 +33,10 @@ def get_description(ticker):
     description = format_line(raw_description)
     return description
 
+
 def format_line(line):
     # To make the output look same as what we get from vim's gq command.
-    width=79
+    width = 79
     lines = textwrap.fill(line, width)
     return lines
 
