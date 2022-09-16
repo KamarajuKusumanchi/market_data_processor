@@ -34,8 +34,8 @@ def update_cache(ticker):
     file_name = get_cache_file_name(ticker)
     file_path = os.path.join(cache_dir, file_name)
     if not os.path.exists(file_path):
-        print("writing to", file_path)
         description = get_description(ticker)
+        print("writing to", file_path)
         with open(file_path, "w") as fh:
             fh.write(description)
 
@@ -44,6 +44,7 @@ def retrieve_cache(ticker):
     cache_dir = get_cache_dir()
     file_name = get_cache_file_name(ticker)
     file_path = os.path.join(cache_dir, file_name)
+    print("reding from", file_path)
     with open(file_path, "r") as fh:
         description = fh.read()
     return description
