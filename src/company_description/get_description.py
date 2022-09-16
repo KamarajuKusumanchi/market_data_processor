@@ -11,7 +11,8 @@ def run_code():
     parser = create_parser()
     args = parser.parse_args()
     ticker = args.ticker
-    description = get_description(ticker)
+    update_cache(ticker)
+    description = retrieve_cache(ticker)
     print(description)
 
 
@@ -28,6 +29,38 @@ def create_parser():
     return parser
 
 
+def update_cache(ticker):
+    cache_dir = get_cache_dir()
+    file_name = get_cache_file_name(ticker)
+    file_path = os.path.join(cache_dir, file_name)
+    if not os.path.exists(file_path):
+        print("writing to", file_path)
+        description = get_description(ticker)
+        with open(file_path, "w") as fh:
+            fh.write(description)
+
+
+def retrieve_cache(ticker):
+    cache_dir = get_cache_dir()
+    file_name = get_cache_file_name(ticker)
+    file_path = os.path.join(cache_dir, file_name)
+    with open(file_path, "r") as fh:
+        description = fh.read()
+    return description
+
+
+def get_cache_dir():
+    this_file = os.path.abspath(__file__)
+    proj_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_file)))
+    cache_dir = os.path.join(os.path.dirname(proj_dir), "company_description", "public")
+    return cache_dir
+
+
+def get_cache_file_name(ticker):
+    file_name = ticker + ".txt"
+    return file_name
+
+
 def get_description(ticker):
     stock = finvizfinance(ticker)
     raw_description = stock.ticker_description()
@@ -40,24 +73,6 @@ def format_line(line):
     width = 79
     lines = textwrap.fill(line, width)
     return lines
-
-
-def get_cache_dir():
-    this_file = os.path.abspath(__file__)
-    proj_dir = os.path.dirname(os.path.dirname(os.path.dirname(this_file)))
-    cache_dir = os.path.join(os.path.dirname(proj_dir), "company_description", "public")
-    return cache_dir
-
-
-def update_cache(ticker):
-    cache_dir = get_cache_dir()
-    file_name = ticker + ".txt"
-    file_path = os.path.join(cache_dir, file_name)
-    if not os.path.exists(file_path):
-        print("writing to", file_path)
-        description = get_description(ticker)
-        with open(file_path, "w") as fh:
-            fh.write(description)
 
 
 if __name__ == "__main__":
