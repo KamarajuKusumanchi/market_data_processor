@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import os.path
 import textwrap
+import time
 
 from finvizfinance.quote import finvizfinance
 
@@ -33,11 +34,23 @@ def update_cache(ticker):
     cache_dir = get_cache_dir()
     file_name = get_cache_file_name(ticker)
     file_path = os.path.join(cache_dir, file_name)
-    if not os.path.exists(file_path):
+    file_exists = os.path.exists(file_path)
+    file_age = time.time() - os.path.getmtime(file_path) if file_exists else -1
+    # age_threshold = threshold in seconds to determine whether a file is new or old.
+    age_threshold = 30 * 24 * 60 * 60  # 30 days
+    file_is_too_old = file_age > age_threshold
+    if not file_exists or file_is_too_old:
         description = get_description(ticker)
         print("writing to", file_path)
         with open(file_path, "w") as fh:
             fh.write(description)
+            # Note 1: If you were to print the description to stdout and
+            # redirect it to a file, there will be an extra new line at the
+            # end. I am adding an extra line here to be consistent with that
+            # behavior.
+            # Note 2: In the write function, we should use '\n' instead of
+            # os.linesep as per https://docs.python.org/3/library/os.html#os.linesep
+            fh.write("\n")
 
 
 def retrieve_cache(ticker):
