@@ -14,7 +14,7 @@ def run_code():
     ticker = args.ticker
     update_cache(ticker)
     description = retrieve_cache(ticker)
-    print(description)
+    print(description, end="")
 
 
 def create_parser():
@@ -44,12 +44,12 @@ def update_cache(ticker):
         print("writing to", file_path)
         with open(file_path, "w") as fh:
             fh.write(description)
-            # Note 1: If you were to print the description to stdout and
-            # redirect it to a file, there will be an extra new line at the
-            # end. I am adding an extra line here to be consistent with that
-            # behavior.
-            # Note 2: In the write function, we should use '\n' instead of
-            # os.linesep as per https://docs.python.org/3/library/os.html#os.linesep
+            # Note1: all text files should end with a new line character.
+            # Ref: https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline
+            # Note 2: Do not use os.linesep as a line terminator when writing
+            # files opened in text mode (the default); use a single '\n'
+            # instead, on all platforms.
+            # Ref: https://docs.python.org/3/library/os.html#os.linesep
             fh.write("\n")
 
 
