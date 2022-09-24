@@ -29,7 +29,13 @@ dependencies:
   - BeautifulSoup4
   - lxml
   - html5lib
+  # PyYAML only supports YAML 1.1 spec. ruamel.yaml supports yaml 1.2 spec and
+  # is an update of PyYAML.
+  # See https://yaml.org/ for more info.
   - ruamel.yaml
   - pip:
     - fake-useragent
     - finvizfinance
+    # ruamel.yaml.cmd gives a commandline utility called yaml
+    # Ref: https://yaml.readthedocs.io/en/latest/install.html
+    - ruamel.yaml.cmd
