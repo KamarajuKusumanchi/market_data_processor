@@ -29,6 +29,7 @@ dependencies:
   - BeautifulSoup4
   - lxml
   - html5lib
+  - ruamel.yaml
   - pip:
     - fake-useragent
     - finvizfinance
