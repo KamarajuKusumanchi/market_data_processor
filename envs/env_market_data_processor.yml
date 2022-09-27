@@ -19,6 +19,10 @@ dependencies:
     # Ref:- https://github.com/pydata/pandas-datareader/releases/tag/v0.10.0
   - pandas-datareader >= 0.10
   - ipython
+    # "jupyter" comes from the jupyter_core pacakge, and jupyter-lab comes from
+    # the jupyterlab package. "jupyter-lab" replaces "jupyter notebook". Use
+    # the former instead of the latter.
+  - jupyterlab
   - pytest
   - pip
   - black
@@ -36,6 +40,8 @@ dependencies:
   - pip:
     - fake-useragent
     - finvizfinance
+      # Jupytext is useful to version control jupyter notebooks.
+    - jupytext
     # ruamel.yaml.cmd gives a commandline utility called yaml
     # Ref: https://yaml.readthedocs.io/en/latest/install.html
     - ruamel.yaml.cmd
