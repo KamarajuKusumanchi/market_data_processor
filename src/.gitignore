@@ -1,0 +1,8 @@
+#------------------------------------------------------------------------------
+# With jupytext, we can pair each .ipynb file with a .py or .md
+# file (depending on the purpose of the .ipynb file). The former is not suitable
+# for version control but the latter is. Jupytext will make sure that the two are
+# in sync. So it is safe to ignore the .ipynb file as long as you commit the latter
+# to git.
+*.ipynb
+#------------------------------------------------------------------------------
