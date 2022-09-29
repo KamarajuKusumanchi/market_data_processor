@@ -22,7 +22,7 @@
 # ValueError: No tables found
 # ```
 #
-# * BeautifulSoup will require us to write lot of code.
+# * BeautifulSoup will require us to write lot of parsing code.
 #
 # * pd.read_fwf(url) will give wrong results. For example
 # ```
@@ -31,19 +31,23 @@
 # df = pd.read_fwf(url)
 # df[(df['series_id'] == 'CUUR0000SA0') & (df['year'] == 2022) & (df['period'] == 'M08')]
 # ```
-# will give
+# shows that the CPI-U value for August 2022 is 6.171 but should actually be 296.171 instead.
 # ```
 #         series_id  year period  value  footnote_codes
 # 3757  CUUR0000SA0  2022    M08  6.171             NaN
 # ```
-# The value should be 296.171 instead of 6.171 (above)
 #
-# * pd.read_csv(url, delimiter='\t') is not ideal. It parses the values correctly.
-# But it will give column names as
+# * pd.read_csv(url, delimiter='\t') is not ideal but good enough.
+# For example, it adds extra white spaces in column names and series_id values etc., and will require further processing.
+#
+# Expected column names:
 # ```
-# ['series_id        ', 'year', 'period', '       value',       'footnote_codes']
+# ['series_id', 'year', 'period', 'value', 'footnote_codes']
 # ```
-# which will require further processing.
+# output from pd.read_csv:
+# ```
+# ['series_id        ', 'year', 'period', '       value', 'footnote_codes']
+# ```
 
 import pandas as pd
 
