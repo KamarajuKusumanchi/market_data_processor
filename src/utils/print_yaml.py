@@ -1,4 +1,16 @@
 #! /usr/bin/env python
+# Utility script to print an yaml file on the command line.
+# Usage:
+# <script_name> file.yaml
+# <script_name> < file.yaml
+#
+# Sample run:
+# $ ./print_yaml.py ../../../company_description/word_groups.yaml
+# - [grocery, groceries]
+#
+# $ ./print_yaml.py < ../../../company_description/word_groups.yaml
+# - [grocery, groceries]
+
 import argparse
 import ruamel.yaml
 import sys
@@ -25,8 +37,8 @@ def parse_arguments():
     return parser
 
 
-def read_yaml(file_name):
-    data = yaml.load(file_name)
+def read_yaml(stream):
+    data = yaml.load(stream)
     return data
 
 

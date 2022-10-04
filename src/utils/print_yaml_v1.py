@@ -9,8 +9,12 @@
 #
 # Limitations:
 #  * It can't handle input from stdin. For example, we can't do
-#    <script_name> < file.yaml
-#  This is fixed in later versions of the script, print_yaml.py, but
+#      <script_name> < file.yaml
+#
+#      $ ./print_yaml_v1.py < ../../../company_description/word_groups.yaml
+#      usage: print_yaml_v1.py [-h] file_name
+#      print_yaml_v1.py: error: the following arguments are required: file_name
+#  This is fixed in latter versions of the script, print_yaml.py, but
 #  I am keeping this for reference.
 
 import argparse
