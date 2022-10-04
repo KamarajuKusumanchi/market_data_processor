@@ -3,6 +3,20 @@ import argparse
 import ruamel.yaml
 import sys
 
+# Utility script to print an yaml file on the command line.
+# Usage:
+# <script_name> file.yaml
+#
+# Sample run:
+# ./print_yaml_v1.py word_groups.yaml
+# - [grocery, groceries]
+#
+# Limitations:
+#  * It can't handle input from stdin. For example, we can't do
+#    <script_name> < file.yaml
+#  This is fixed in later versions of the script, print_yaml.py, but
+#  I am keeping this for reference.
+
 # Using the new syntax from https://yaml.readthedocs.io/en/latest/api.html
 yaml = ruamel.yaml.YAML(typ="safe", pure=True)
 
