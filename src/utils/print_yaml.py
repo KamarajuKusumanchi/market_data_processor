@@ -22,7 +22,9 @@ yaml = ruamel.yaml.YAML(typ="safe", pure=True)
 def run_code():
     parser = parse_arguments()
     args = parser.parse_args()
+    # Note:- file_name is of type _io.TextIOWrapper, not str
     file_name = args.file_name
+    # print(type(file_name))
     data = read_yaml(file_name)
     yaml.dump(data, sys.stdout)
 

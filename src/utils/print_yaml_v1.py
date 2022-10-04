@@ -29,6 +29,7 @@ def run_code():
     parser = parse_arguments()
     args = parser.parse_args()
     file_name = args.file_name
+    # print(type(file_name))
     data = read_yaml(file_name)
     yaml.dump(data, sys.stdout)
 
