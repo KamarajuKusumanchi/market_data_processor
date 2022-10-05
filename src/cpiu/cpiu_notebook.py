@@ -89,5 +89,3 @@ year_of_interest = 2019
 average_cpu1 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] != 'M13')]['value'].mean()
 average_cpu2 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] == 'M13')]['value'].values[0]
 (average_cpu1, average_cpu2, average_cpu1 - average_cpu2)
-
-
