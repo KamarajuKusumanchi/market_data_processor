@@ -1,0 +1,11 @@
+-------------------------------------------------------------------------------
+Task: Add descriptions of all sp500 companies.
+
+To test, I used
+ % cd ~/work/github/company_description/public
+ % tail -n1 ~/work/github/market_data/sp500/sp500_constituents.txt | tr ',' '\n' | tail -n +2 | head -n 5 | xargs -L1 ~/work/github/market_data_processor/src/company_description/get_description.py
+
+To do it for all sp500 tickers
+ % cd ~/work/github/company_description/public
+ % tail -n1 ~/work/github/market_data/sp500/sp500_constituents.txt | tr ',' '\n' | tail -n +2 | xargs -L1 ~/work/github/market_data_processor/src/company_description/get_description.py
+-------------------------------------------------------------------------------
