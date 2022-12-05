@@ -78,10 +78,15 @@ df[(df['series_id'] == 'CUUR0000SA0') & (df['year'] == 2022) & (df['period'] == 
 
 # verify that we get same values as shown in https://www.bls.gov/regions/mid-atlantic/data/consumerpriceindexhistorical_us_table.htm
 cpiu_id = 'CUUR0000SA0'
-df[(df['series_id'] == cpiu_id) & (df['year'] == 2022)]
+df[(df['series_id'] == cpiu_id) & (df['year'] == 2021)]
 
-cpiu = df[(df['series_id'] == cpiu_id)]
-cpiu['period'].drop_duplicates()
+# period = M13 is just the annual average.
+year_of_interest = 2020
+average_cpu1 = df[(df['series_id'] == cpiu_id) & (df['year'] == year_of_interest) & (df['period'] == 'M13')]['value'].values[0]
+average_cpu2 = df[(df['series_id'] == cpiu_id) & (df['year'] == year_of_interest) & (df['period'] != 'M13')]['value'].mean()
+(average_cpu1, average_cpu2, average_cpu1 - average_cpu2)
+
+cpiu = df[(df['series_id'] == cpiu_id) & (df['period'] != 'M13')].copy()
 
 cpiu[(cpiu['year'] == 2021)]
 
@@ -89,3 +94,13 @@ year_of_interest = 2019
 average_cpu1 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] != 'M13')]['value'].mean()
 average_cpu2 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] == 'M13')]['value'].values[0]
 (average_cpu1, average_cpu2, average_cpu1 - average_cpu2)
+
+cpiu['month'] = cpiu['period'].str[-2:].astype(int)
+cpiu['date'] = cpiu['year'].astype(str) + '-' + cpiu['period'].str[-2:]
+
+cpiu
+
+pd.__version__
+
+(cpiu['value'].pct_change(12) * 100).dropna()
+
