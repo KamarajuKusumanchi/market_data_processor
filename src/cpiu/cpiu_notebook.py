@@ -55,7 +55,7 @@ url = 'https://download.bls.gov/pub/time.series/cu/cu.data.1.AllItems'
 
 df = pd.read_csv(url, delimiter='\t')
 
-# Some of the columns have white spaces  in their names.
+# Some of the columns have white spaces in their names.
 # These white spaces are showing up either at the beginning or at the end.
 df.columns
 
@@ -67,6 +67,8 @@ df.columns
 df.shape
 
 df.head()
+
+df.tail()
 
 # The series_id values have trailing white spaces.
 # For example, we have 'CUUR0000SA0      '. But we want them as 'CUUR0000SA0'
@@ -86,14 +88,10 @@ average_cpu1 = df[(df['series_id'] == cpiu_id) & (df['year'] == year_of_interest
 average_cpu2 = df[(df['series_id'] == cpiu_id) & (df['year'] == year_of_interest) & (df['period'] != 'M13')]['value'].mean()
 (average_cpu1, average_cpu2, average_cpu1 - average_cpu2)
 
+# Get cpiu data without the (period = M13) entries
 cpiu = df[(df['series_id'] == cpiu_id) & (df['period'] != 'M13')].copy()
 
 cpiu[(cpiu['year'] == 2021)]
-
-year_of_interest = 2019
-average_cpu1 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] != 'M13')]['value'].mean()
-average_cpu2 = cpiu[(cpiu['year'] == year_of_interest) & (cpiu['period'] == 'M13')]['value'].values[0]
-(average_cpu1, average_cpu2, average_cpu1 - average_cpu2)
 
 cpiu['month'] = cpiu['period'].str[-2:].astype(int)
 cpiu['date'] = cpiu['year'].astype(str) + '-' + cpiu['period'].str[-2:]
@@ -103,4 +101,6 @@ cpiu
 pd.__version__
 
 (cpiu['value'].pct_change(12) * 100).dropna()
+
+
 
