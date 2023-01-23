@@ -101,6 +101,3 @@ cpiu
 pd.__version__
 
 (cpiu['value'].pct_change(12) * 100).dropna()
-
-
-
