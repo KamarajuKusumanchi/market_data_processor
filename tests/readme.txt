@@ -2,6 +2,7 @@ To run the tests
 
 cd ~/work/github/market_data_processor
 conda activate market_data_processor
+# Ignore the tests in the directory named 'deprecated'
 pytest --ignore=deprecated
 
 See also:
