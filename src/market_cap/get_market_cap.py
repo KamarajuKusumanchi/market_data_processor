@@ -2,6 +2,7 @@
 # Get market cap
 import argparse
 
+import numpy as np
 import requests
 import pandas as pd
 import pprint
@@ -92,6 +93,7 @@ def run_code():
     nasdaq_df = convert_nasdaq_data_to_df(nasdaq_data)
     market_cap = get_market_cap(nasdaq_df, limit)
     pd.set_option("display.max_columns", None, "display.max_rows", None)
+    market_cap.index = np.arange(len(market_cap)) + 1
     # print(market_cap.to_csv(index=False))
     print(market_cap)
 
