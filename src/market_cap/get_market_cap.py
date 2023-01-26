@@ -1,5 +1,10 @@
+#! /usr/bin/env python3
+# Get market cap
+
 import requests
 import pandas as pd
+import pprint
+import os
 
 
 def get_nasdaq_data():
@@ -25,14 +30,24 @@ def get_nasdaq_data():
     return data
 
 
+def dump_nasdaq_data(data):
+    """
+    :param data: dictionary
+    :return:
+    """
+    # Ref:- https://stackoverflow.com/questions/4028904/what-is-a-cross-platform-way-to-get-the-home-directory
+    home = os.path.expanduser("~")
+    path = os.path.join(home, "x", "nasdaq_data.py")
+    print("writing nasdaq data to", path)
+    # Note: pprint is discussed in https://automatetheboringstuff.com/2e/chapter9/
+    # -> Saving Variables with the pprint.pformat() Function
+    fileObj = open(path, "w")
+    fileObj.write("nasdaq_data = " + pprint.pformat(data) + "\n")
+    fileObj.close()
+
+
 def convert_nasdaq_data_to_df(data):
     df = pd.DataFrame(data["data"]["rows"])
-    return df
-
-
-def get_nasdaq_df():
-    data = get_nasdaq_data()
-    df = convert_nasdaq_data_to_df(data)
     # The marketCap column contains empty strings. So, if I do
     #   df['marketCap'] = df['marketCap'].astype('float')
     # it gives
@@ -49,12 +64,15 @@ def get_market_cap(nasdaq_df):
     :param nasdaq_df: dataFrame
     :return: dataFrame
     """
-    return nasdaq_df[["symbol", "marketCap"]]
-    return 0
+    market_cap = nasdaq_df[["symbol", "marketCap"]]
+    market_cap = market_cap.sort_values("marketCap", ascending=False)
+    return market_cap
 
 
 def run_code():
-    nasdaq_df = get_nasdaq_df()
+    nasdaq_data = get_nasdaq_data()
+    # dump_nasdaq_data(nasdaq_data)
+    nasdaq_df = convert_nasdaq_data_to_df(nasdaq_data)
     market_cap = get_market_cap(nasdaq_df)
     pd.set_option("display.max_columns", None, "display.max_rows", None)
     print(market_cap.to_csv(index=False))
