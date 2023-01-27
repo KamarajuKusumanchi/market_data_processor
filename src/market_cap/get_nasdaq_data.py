@@ -1,9 +1,31 @@
 #! /usr/bin/env python3
+
+# Get nasdaq data.
+# Sample run
+# get_nasdaq_data.py | body grep -i costco | column -t -s ,
+# symbol  name                                       lastsale  netchange  pctchange  volume   marketCap       country        ipoyear  industry                            sector                  url
+# COST    Costco Wholesale Corporation Common Stock  $503.29   4.99       1.001%     2032821  223324386528.0  United States           Department/Specialty Retail Stores  Consumer Discretionary  /market-activity/stocks/cost
+
+import argparse
 import os
 import pprint
+import sys
 
 import pandas as pd
 import requests
+
+
+def create_parser():
+    parser = argparse.ArgumentParser(description="Get nasdaq data")
+    parser.add_argument(
+        "-o",
+        "--output",
+        dest="output_file",
+        type=argparse.FileType("w"),
+        default=sys.stdout,
+        help="output file",
+    )
+    return parser
 
 
 def get_nasdaq_data():
@@ -29,25 +51,19 @@ def get_nasdaq_data():
     return data
 
 
-def dump_nasdaq_data(data: dict):
+def dump_raw_nasdaq_data(data: dict, path: str):
     """
     :param data: dictionary
     :return:
     """
-    # Ref:- https://stackoverflow.com/questions/4028904/what-is-a-cross-platform-way-to-get-the-home-directory
-    home = os.path.expanduser("~")
-    path = os.path.join(home, "x", "nasdaq_data.py")
-    print("writing nasdaq data to", path)
+    if path is not sys.stdout:
+        print("writing nasdaq data to", path)
     # Note: pprint is discussed in https://automatetheboringstuff.com/2e/chapter9/
     # -> Saving Variables with the pprint.pformat() Function
-    fileObj = open(path, "w")
+    # fileObj = open(path, "w")
+    fileObj = path
     fileObj.write("nasdaq_data = " + pprint.pformat(data) + "\n")
-    fileObj.close()
-
-
-def run_code():
-    nasdaq_data = get_nasdaq_data()
-    dump_nasdaq_data(nasdaq_data)
+    # fileObj.close()
 
 
 def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
@@ -61,6 +77,35 @@ def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
     # Ref:- https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
     df["marketCap"] = pd.to_numeric(df["marketCap"], errors="coerce")
     return df
+
+
+def dump_nasdaq_df(df: pd.DataFrame, path: str):
+    # When dumping the output on the command line, we do not want to print
+    # extra stuff as it will interfere with downstream processing such as
+    #   get_nasdaq_data.py | body grep -i NWSA
+    # So, print the file information only if it is not stdout.
+    if path is not sys.stdout:
+        print("writing nasdaq data to", path)
+    df.to_csv(path, index=False)
+
+
+def run_code():
+    parser = create_parser()
+    args = parser.parse_args()
+    data = get_nasdaq_data()
+    path = args.output_file
+
+    # # Ref:- https://stackoverflow.com/questions/4028904/what-is-a-cross-platform-way-to-get-the-home-directory
+    # # home = os.path.expanduser("~")
+    # # path = os.path.join(home, "x", "data.py")
+    # dump_raw_nasdaq_data(data, path)
+
+    # path = os.path.join(home, 'x', 'data.csv')
+    df = convert_nasdaq_data_to_df(data)
+    dump_nasdaq_df(df, path)
+
+    if path is not sys.stdout:
+        path.close()
 
 
 if __name__ == "__main__":
