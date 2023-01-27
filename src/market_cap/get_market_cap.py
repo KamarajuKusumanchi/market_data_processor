@@ -1,12 +1,11 @@
 #! /usr/bin/env python3
 # Get market cap
 import argparse
-
 import numpy as np
-import requests
 import pandas as pd
-import pprint
-import os
+
+import sys_path
+from src.market_cap.get_nasdaq_data import get_nasdaq_data
 
 
 def create_parser():
@@ -17,46 +16,7 @@ def create_parser():
     return parser
 
 
-def get_nasdaq_data():
-    # I found this url as follows:
-    # Go to https://www.nasdaq.com/market-activity/stocks/screener in chrome
-    # -> F12 -> Network
-    # -> click on the "Download CSV" button and watch the requests at the
-    # bottom which shows that it is getting data from
-    # https://api.nasdaq.com/api/screener/stocks?tableonly=true&limit=25&offset=0&download=true
-    #
-    # Ref:- https://stackoverflow.com/questions/70283880/cant-find-hyper-link-for-this-csv-file-on-website
-    url = "https://api.nasdaq.com/api/screener/stocks?download=true"
-    # To get around the connection timeour errors,
-    # https://stackoverflow.com/questions/61943209/accessing-nasdaq-historical-data-with-python-requests-results-in-connection-time
-    # suggests to use the following headers.
-    headers = {
-        "Accept-Language": "en-US,en;q=0.9",
-        "Accept-Encoding": "gzip, deflate, br",
-        "User-Agent": "Java-http-client/",
-    }
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    return data
-
-
-def dump_nasdaq_data(data):
-    """
-    :param data: dictionary
-    :return:
-    """
-    # Ref:- https://stackoverflow.com/questions/4028904/what-is-a-cross-platform-way-to-get-the-home-directory
-    home = os.path.expanduser("~")
-    path = os.path.join(home, "x", "nasdaq_data.py")
-    print("writing nasdaq data to", path)
-    # Note: pprint is discussed in https://automatetheboringstuff.com/2e/chapter9/
-    # -> Saving Variables with the pprint.pformat() Function
-    fileObj = open(path, "w")
-    fileObj.write("nasdaq_data = " + pprint.pformat(data) + "\n")
-    fileObj.close()
-
-
-def convert_nasdaq_data_to_df(data):
+def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
     df = pd.DataFrame(data["data"]["rows"])
     # The marketCap column contains empty strings. So, if I do
     #   df['marketCap'] = df['marketCap'].astype('float')
@@ -69,7 +29,7 @@ def convert_nasdaq_data_to_df(data):
     return df
 
 
-def get_market_cap(nasdaq_df, limit):
+def get_market_cap(nasdaq_df: pd.DataFrame, limit: int) -> pd.DataFrame:
     """
     :param nasdaq_df: dataFrame
     :return: dataFrame
@@ -89,7 +49,6 @@ def run_code():
     args = parser.parse_args()
     limit = int(args.limit) if args.limit else None
     nasdaq_data = get_nasdaq_data()
-    # dump_nasdaq_data(nasdaq_data)
     nasdaq_df = convert_nasdaq_data_to_df(nasdaq_data)
     market_cap = get_market_cap(nasdaq_df, limit)
     pd.set_option("display.max_columns", None, "display.max_rows", None)
