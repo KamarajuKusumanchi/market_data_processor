@@ -2,6 +2,7 @@
 import os
 import pprint
 
+import pandas as pd
 import requests
 
 
@@ -47,6 +48,19 @@ def dump_nasdaq_data(data: dict):
 def run_code():
     nasdaq_data = get_nasdaq_data()
     dump_nasdaq_data(nasdaq_data)
+
+
+def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
+    df = pd.DataFrame(data["data"]["rows"])
+    # The marketCap column contains empty strings. So, if I do
+    #   df['marketCap'] = df['marketCap'].astype('float')
+    # it gives
+    #   ValueError: could not convert string to float: ''
+    # As a workaround, I am using pandas.to_numeric with errors='coerce'
+    # which will convert any value error to NaN
+    # Ref:- https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
+    df["marketCap"] = pd.to_numeric(df["marketCap"], errors="coerce")
+    return df
 
 
 if __name__ == "__main__":
