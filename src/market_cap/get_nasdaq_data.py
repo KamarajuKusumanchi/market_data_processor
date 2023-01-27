@@ -6,6 +6,8 @@
 # symbol  name                                       lastsale  netchange  pctchange  volume   marketCap       country        ipoyear  industry                            sector                  url
 # COST    Costco Wholesale Corporation Common Stock  $503.29   4.99       1.001%     2032821  223324386528.0  United States           Department/Specialty Retail Stores  Consumer Discretionary  /market-activity/stocks/cost
 
+# tags: "https://www.nasdaq.com/market-activity/stocks/screener"
+
 import argparse
 import os
 import pprint

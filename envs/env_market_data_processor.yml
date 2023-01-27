@@ -37,6 +37,8 @@ dependencies:
   # is an update of PyYAML.
   # See https://yaml.org/ for more info.
   - ruamel.yaml
+    # to pretty print dataframes.
+  - tabulate
   - pip:
     - fake-useragent
     - finvizfinance

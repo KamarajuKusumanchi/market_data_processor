@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 # Get market cap
+
+# tags: download market cap of all sp500 companies
+
 import argparse
 import numpy as np
 import pandas as pd
