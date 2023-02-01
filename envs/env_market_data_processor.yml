@@ -26,16 +26,16 @@ dependencies:
   - pytest
   - pip
   - black
-  # As per
-  # https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas
-  # we need
-  # BeautifulSoup4, html5lib, and lxml for read_html.
+    # As per
+    # https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas
+    # we need
+    # BeautifulSoup4, html5lib, and lxml for read_html.
   - BeautifulSoup4
   - lxml
   - html5lib
-  # PyYAML only supports YAML 1.1 spec. ruamel.yaml supports yaml 1.2 spec and
-  # is an update of PyYAML.
-  # See https://yaml.org/ for more info.
+    # PyYAML only supports YAML 1.1 spec. ruamel.yaml supports yaml 1.2 spec and
+    # is an update of PyYAML.
+    # See https://yaml.org/ for more info.
   - ruamel.yaml
     # to pretty print dataframes.
   - tabulate
@@ -44,6 +44,6 @@ dependencies:
     - finvizfinance
       # Jupytext is useful to version control jupyter notebooks.
     - jupytext
-    # ruamel.yaml.cmd gives a commandline utility called yaml
-    # Ref: https://yaml.readthedocs.io/en/latest/install.html
+      # ruamel.yaml.cmd gives a commandline utility called yaml
+      # Ref: https://yaml.readthedocs.io/en/latest/install.html
     - ruamel.yaml.cmd
