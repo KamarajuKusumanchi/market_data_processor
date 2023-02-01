@@ -26,19 +26,25 @@ dependencies:
   - pytest
   - pip
   - black
-    # As per
-    # https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas
-    # we need
-    # BeautifulSoup4, html5lib, and lxml for read_html.
+    # BeautifulSoup4, html5lib, lxml are needed for read_html(). But they are
+    # listed as optional dependencies.  To be specific, BeautifulSoup4 can work
+    # with either of html5lib or lxml or both.
+    # Per https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-html-gotchas
+    # html5lib is slower but more accurate; lxml is faster but less accurate.
+    # Prefer html5lib whenever possible but install both parsers.
+    # For a full list of optional dependencies of pandas, see
+    # https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html#optional-dependencies
   - BeautifulSoup4
-  - lxml
   - html5lib
+  - lxml
+    # DataFrame.to_markdown() can pretty print dataframes. It requires the
+    # tabulate package per
+    # https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html#optional-dependencies
+  - tabulate
     # PyYAML only supports YAML 1.1 spec. ruamel.yaml supports yaml 1.2 spec and
     # is an update of PyYAML.
     # See https://yaml.org/ for more info.
   - ruamel.yaml
-    # to pretty print dataframes.
-  - tabulate
   - pip:
     - fake-useragent
     - finvizfinance
