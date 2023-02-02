@@ -69,6 +69,7 @@ def dump_raw_nasdaq_data(data: dict, path: str):
 
 
 def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
+    # data["data"]["rows"] is a list of dictionaries.
     df = pd.DataFrame(data["data"]["rows"])
     # The marketCap column contains empty strings. So, if I do
     #   df['marketCap'] = df['marketCap'].astype('float')
@@ -78,6 +79,8 @@ def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
     # which will convert any value error to NaN
     # Ref:- https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
     df["marketCap"] = pd.to_numeric(df["marketCap"], errors="coerce")
+    # df['pctchange'] is a string such as '-0.122%' . Remove the trailing '%' symbol and make it a float.
+    df["pctchange"] = df["pctchange"].str.rstrip("%").astype(float)
     return df
 
 
@@ -88,7 +91,10 @@ def dump_nasdaq_df(df: pd.DataFrame, path: str):
     # So, print the file information only if it is not stdout.
     if path is not sys.stdout:
         print("writing nasdaq data to", path)
-    df.to_csv(path, index=False)
+    # If you try to open the csv file written without the lineterminator='\n'
+    # option, in excel, shows empty lines in every alternate row. If you
+    # write them with lineterminator='\n' option, then excel opens it correctly.
+    df.to_csv(path, index=False, lineterminator="\n")
 
 
 def run_code():
