@@ -26,6 +26,7 @@ dependencies:
   - pytest
   - pip
   - black
+  - csvkit
     # BeautifulSoup4, html5lib, lxml are needed for read_html(). But they are
     # listed as optional dependencies.  To be specific, BeautifulSoup4 can work
     # with either of html5lib or lxml or both.
