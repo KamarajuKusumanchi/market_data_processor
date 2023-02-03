@@ -97,6 +97,11 @@ def dump_nasdaq_df(df: pd.DataFrame, path: str):
     df.to_csv(path, index=False, lineterminator="\n")
 
 
+def get_nasdaq_df():
+    data = get_nasdaq_data()
+    df = convert_nasdaq_data_to_df(data)
+    return df
+
 def run_code():
     parser = create_parser()
     args = parser.parse_args()
