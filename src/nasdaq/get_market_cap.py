@@ -43,7 +43,7 @@ def run_code():
     market_cap = get_market_cap(nasdaq_df, limit)
     pd.set_option("display.max_columns", None, "display.max_rows", None)
     market_cap.index = np.arange(len(market_cap)) + 1
-    # print(market_cap.to_csv(index=False))
+    # print(nasdaq.to_csv(index=False))
     print(market_cap)
 
 
