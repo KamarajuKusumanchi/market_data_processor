@@ -80,7 +80,13 @@ def convert_nasdaq_data_to_df(data: dict) -> pd.DataFrame:
     # Ref:- https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html
     df["marketCap"] = pd.to_numeric(df["marketCap"], errors="coerce")
     # df['pctchange'] is a string such as '-0.122%' . Remove the trailing '%' symbol and make it a float.
-    df["pctchange"] = df["pctchange"].str.rstrip("%").astype(float)
+    # We cannot use
+    #   df["pctchange"] = df["pctchange"].str.rstrip("%").astype(float)
+    # as some of the entries in df["pctchange"] are empty strings, and it will fail with
+    #   ValueError: could not convert string to float: ''
+    df["pctchange"] = (
+        df["pctchange"].str.rstrip("%").apply(pd.to_numeric, errors="coerce")
+    )
     return df
 
 
@@ -101,6 +107,7 @@ def get_nasdaq_df():
     data = get_nasdaq_data()
     df = convert_nasdaq_data_to_df(data)
     return df
+
 
 def run_code():
     parser = create_parser()
