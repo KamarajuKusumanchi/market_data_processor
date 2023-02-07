@@ -15,6 +15,7 @@ import sys
 
 import pandas as pd
 import requests
+from typing import Dict, Any
 
 
 def create_parser():
@@ -30,7 +31,7 @@ def create_parser():
     return parser
 
 
-def get_nasdaq_data():
+def get_nasdaq_data() -> Dict[str, Any]:
     # I found this url as follows:
     # Go to https://www.nasdaq.com/market-activity/stocks/screener in chrome
     # -> F12 -> Network

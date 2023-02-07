@@ -33,6 +33,10 @@ def get_mktcap_change(df: pd.DataFrame):
     df.insert(df.columns.get_loc("marketCap") + 1, col_name, mktcap_change)
     # Sort by the absolute value of market cap change
     df = df.iloc[(-df[col_name].abs()).argsort()].reset_index(drop=True)
+    # Put important columns at the beginning
+    important_cols = ['symbol', 'marketCap', 'mktcap_change', 'pctchange']
+    unimportant_cols = [col for col in df.columns if col not in important_cols]
+    df = df[important_cols + unimportant_cols]
     return df
 
 
