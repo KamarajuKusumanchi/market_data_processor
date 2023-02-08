@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 # Sample usage
-# $ $market_data_processor/src/nasdaq/get_mktcap_change.py > ~/x/nasdaq.csv
+# $ $market_data_processor/src/nasdaq/get_marketcap_change.py > ~/x/nasdaq.csv
 # $ csvcut -c symbol,marketCap,mktcap_change,pctchange ~/x/nasdaq.csv | column -t -s, -R 2,3,4 | head
 # symbol          marketCap  mktcap_change  pctchange
 # AAPL              2703.38          88.56       3.39
