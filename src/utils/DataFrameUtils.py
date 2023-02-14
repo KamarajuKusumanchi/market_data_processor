@@ -6,6 +6,11 @@ from tabulate import tabulate
 
 def to_fwf(df, fname, index=True):
     # Initial version is from https://stackoverflow.com/a/35974742
+    #
+    # Note: I want to keep the interface same as pandas.DataFrame.to_csv for
+    # as much as possible. That is why 'index' is a boolean variable with
+    # default True.
+    # Ref:- https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html
     fname = os.path.expanduser(fname)
     if index:
         show_index = list(df.index)
