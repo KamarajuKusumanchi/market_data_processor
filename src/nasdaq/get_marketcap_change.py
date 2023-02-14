@@ -17,9 +17,15 @@
 import sys
 import numpy as np
 import pandas as pd
+import argparse
 
 import project_root
 from src.nasdaq.get_nasdaq_data import get_nasdaq_df
+
+
+def create_parser():
+    parser = argparse.ArgumentParser("Get changes in the market cap values")
+    return parser
 
 
 def get_marketcap_change(df: pd.DataFrame):
@@ -34,7 +40,7 @@ def get_marketcap_change(df: pd.DataFrame):
     # Sort by the absolute value of market cap change
     df = df.iloc[(-df[col_name].abs()).argsort()].reset_index(drop=True)
     # Put important columns at the beginning
-    high_priority_cols = ['symbol', 'marketCap', col_name, 'pctchange']
+    high_priority_cols = ["symbol", "marketCap", col_name, "pctchange"]
     least_priority_cols = ["name"]
     cols_accounted = high_priority_cols + least_priority_cols
     cols_unaccounted = [col for col in df.columns if col not in cols_accounted]
@@ -43,6 +49,8 @@ def get_marketcap_change(df: pd.DataFrame):
 
 
 def run_code():
+    parser = create_parser()
+    args = parser.parse_args()
     df = get_nasdaq_df()
     in_billions = True
     if in_billions:
@@ -55,11 +63,14 @@ def run_code():
     #     sys.stdout, index=False, lineterminator="\n"
     # )
     # Using https://stackoverflow.com/a/62546734 to format columns
-    formats = {'marketCap': '{:.2f}', 'marketcap_change': '{:.2f}',
-               'pctchange': '{:.2f}'}
+    formats = {
+        "marketCap": "{:.2f}",
+        "marketcap_change": "{:.2f}",
+        "pctchange": "{:.2f}",
+    }
     for col, f in formats.items():
         df[col] = df[col].apply(lambda x: f.format(x))
-    df.to_csv(sys.stdout, index=False, lineterminator='\n')
+    df.to_csv(sys.stdout, index=False, lineterminator="\n")
 
 
 if __name__ == "__main__":
