@@ -1,4 +1,18 @@
 #! /usr/bin/env python3
+# Get eps history
+
+# Sample run
+#  % python src/eps/get_eps.py COST | head
+#  Announcement Date    Fiscal Quarter End    Estimated EPS    Actual EPS
+#  2022-12-08           2022-11-30            $3.14            $3.10
+#  2022-09-22           2022-08-31            $4.12            $4.20
+#  2022-05-26           2022-05-31            $3.00            $3.17
+#  2022-03-03           2022-02-28            $2.69            $2.92
+#  2021-12-09           2021-11-30            $2.59            $2.97
+#  2021-09-23           2021-08-31            $3.55            $3.90
+#  2021-05-27           2021-05-31            $2.29            $2.75
+#  2021-03-04           2021-02-28            $2.42            $2.14
+#  2020-12-10           2020-11-30            $2.04            $2.29
 
 import argparse
 import pandas as pd
