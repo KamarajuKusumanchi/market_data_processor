@@ -47,6 +47,16 @@ def get_eps(ticker):
     url = f"https://www.alphaquery.com/stock/{ticker}/earnings-history"
     dfs = pd.read_html(url)
     df = dfs[0]
+    # The initial column names are something like
+    # ['Announcement Date', 'Fiscal Quarter End', 'Estimated EPS', 'Actual EPS']
+    # The spaces in the column names will cause problems when the data is
+    # loaded into excel if we were to dump the dataframe itself with space
+    # delimiters.
+    df.columns = df.columns.str.lower().str.replace(' ', '_')
+    # Estimated EPS and Actual EPS are something like $1.28 .
+    # Remove the leading '$' and convert the rest into a number.
+    df['estimated_eps'] = df['estimated_eps'].str.replace('^\$', '', regex=True).apply(pd.to_numeric, errors='coerce')
+    df['actual_eps'] = df['actual_eps'].str.replace('^\$', '', regex=True).apply(pd.to_numeric, errors='coerce')
     return df
 
 
