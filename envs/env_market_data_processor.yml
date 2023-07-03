@@ -47,8 +47,15 @@ dependencies:
     # See https://yaml.org/ for more info.
   - ruamel.yaml
     # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
-    # version) but the defaults channel has version 1.16.0. So use conda-forge.
-  - conda-forge::streamlit
+    # version) but the defaults channel has version 1.16.0.
+    # To pull streamlit from conda-forge, use
+    # - conda-forge::streamlit
+    # But while creating the environment with both defaults and conda-forge
+    # channels on a machine running Debian stable (bookwork) with 1 GB RAM, 1
+    # core, I encounted
+    #   Collecting package metadata (repodata.json): - Killed
+    # So, decided to only use the defaults channel for now for streamlit.
+  - streamlit
   - pip:
     - fake-useragent
     - finvizfinance
