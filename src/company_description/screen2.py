@@ -12,8 +12,8 @@ import get_description
 import subprocess
 import pathlib
 
-st.set_page_config(page_title="Company Description", layout='wide')
-st.title('Discover companies')
+st.set_page_config(page_title="Discover companies", layout='wide')
+st.title('Company finder')
 search_by = st.radio(
     'search by',
     ('ticker', 'keywords'),
