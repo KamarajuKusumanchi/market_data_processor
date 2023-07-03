@@ -2,8 +2,10 @@
 #  % conda activate market_data_processor
 #  % which streamlit
 # /opt/rajulocal/miniconda3/envs/market_data_processor/bin/streamlit
-#  % cd $github/market_data_processor/src/company_description
-#  % streamlit run ./main.py
+#  % cd $github/market_data_processor
+#  % streamlit run ./src/company_description/screen2.py
+#  or
+#  % python -m streamlit run ./screen2.py
 
 import streamlit as st
 import get_description
