@@ -41,7 +41,7 @@ elif search_by == 'keywords':
 
         cache_dir = get_description.get_cache_dir()
         cache_dir = pathlib.Path(cache_dir)
-        cmd = ['git', 'grep', '-i', '--all-match']
+        cmd = ['git', 'grep', '--untracked', '-i', '--all-match']
         for word in words:
             cmd += ['-e', word]
         # st.text(cmd)
