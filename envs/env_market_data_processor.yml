@@ -11,7 +11,7 @@ name: market_data_processor
 channels:
   - defaults
 dependencies:
-  - python=3.10
+  - python=3.11
   - pandas
   - pycodestyle
     # Need pandas-datareader >= 0.10.0 as it has fixed yahoo reader which now
@@ -46,6 +46,9 @@ dependencies:
     # is an update of PyYAML.
     # See https://yaml.org/ for more info.
   - ruamel.yaml
+    # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
+    # version) but the defaults channel has version 1.16.0. So use conda-forge.
+  - conda-forge::streamlit
   - pip:
     - fake-useragent
     - finvizfinance
