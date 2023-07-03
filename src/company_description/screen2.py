@@ -23,12 +23,16 @@ search_by = st.radio(
 if search_by == 'ticker':
     ticker = st.text_input("Enter a ticker")
     if ticker:
-        get_description.update_cache(ticker)
-        description = get_description.retrieve_cache(ticker)
-        # description = description.replace('\n', ' ')
-        # print(description)
-        st.text(description)
-        # st.write(description)
+        try:
+            get_description.update_cache(ticker)
+            ticker_is_valid = True
+        except Exception as e:
+            ticker_is_valid = False
+            st.text('exception encountered while getting data for ' + ticker)
+            st.text(e)
+        if ticker_is_valid:
+            description = get_description.retrieve_cache(ticker)
+            st.text(description)
 elif search_by == 'keywords':
     keywords = st.text_input('Enter keywords')
     if keywords:
