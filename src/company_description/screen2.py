@@ -54,4 +54,6 @@ elif search_by == 'keywords':
             cwd=cache_dir
         )
         st.text(result.stdout)
+        if not result.stdout:
+            st.text('no hits')
         st.text(result.stderr)
