@@ -8,11 +8,14 @@
 import streamlit as st
 import get_description
 
-st.set_page_config(page_title="Company Description")
+st.set_page_config(page_title="Company Description", layout='wide')
 st.title("Get company description from ticker")
 ticker = st.text_input("Enter a ticker")
 
 if ticker:
     get_description.update_cache(ticker)
     description = get_description.retrieve_cache(ticker)
+    # description = description.replace('\n', ' ')
+    # print(description)
     st.text(description)
+    # st.write(description)
