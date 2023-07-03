@@ -31,6 +31,7 @@ def create_parser():
 
 
 def update_cache(ticker):
+    ticker = ticker.upper()
     cache_dir = get_cache_dir()
     file_name = get_cache_file_name(ticker)
     file_path = os.path.join(cache_dir, file_name)
@@ -54,6 +55,7 @@ def update_cache(ticker):
 
 
 def retrieve_cache(ticker):
+    ticker = ticker.upper()
     cache_dir = get_cache_dir()
     file_name = get_cache_file_name(ticker)
     file_path = os.path.join(cache_dir, file_name)
