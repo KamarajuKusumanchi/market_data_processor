@@ -24,7 +24,7 @@ mkdir -p $download_dir
 wget $url -nc -P $download_dir
 
 build_root="$HOME/software/compileHere"
-mkdir -p build_root
+mkdir -p $build_root
 
 build_dir="$build_root/twsapi_${api_version}"
 # Remove files created during prior builds
