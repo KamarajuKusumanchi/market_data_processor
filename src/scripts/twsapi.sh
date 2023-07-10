@@ -8,6 +8,7 @@ api_file="twsapi_macunix.${api_version}.zip"
 url="https://interactivebrokers.github.io/downloads/${api_file}"
 
 download_dir="$HOME/software/zipped/twsapi"
+mkdir -p $download_dir
 # man page of wget: https://linux.die.net/man/1/wget
 # -nc | --no-clobber
 #   Do not clobber, or overwrite the file upon repeated download
@@ -34,3 +35,15 @@ echo "building the wheel"
 # ~/software/unZipped/twsapi_1022.01/IBJts/source/pythonclient/dist/ibapi-10.22.1-py3-none-any.whl
 cd $unzip_dir/IBJts/source/pythonclient
 python3 setup.py bdist_wheel
+
+# To install the wheel
+#   % conda activate market_data_processor
+#   % python -m pip install --user --upgrade ~/software/unZipped/twsapi_1022.01/IBJts/source/pythonclient/dist/ibapi-10.22.1-py3-none-any.whl
+#
+# To test it
+#   % python
+#   Python 3.11.3 (main, May 15 2023, 15:45:52) [GCC 11.2.0] on linux
+#   >>> import ibapi
+#
+# To remove ibapi
+#   % python -m pip uninstall ibapi
