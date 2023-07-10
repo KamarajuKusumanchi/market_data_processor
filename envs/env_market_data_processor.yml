@@ -64,3 +64,8 @@ dependencies:
       # ruamel.yaml.cmd gives a commandline utility called yaml
       # Ref: https://yaml.readthedocs.io/en/latest/install.html
     - ruamel.yaml.cmd
+      # The TWS python api is available as a zip file at
+      # https://interactivebrokers.github.io/# .
+      # use $repo_dir/src/scripts/build_twsapi.sh to create a wheel file from
+      # it.
+    - file:///home/rajulocal/software/dist/ibapi-10.22.1-py3-none-any.whl
