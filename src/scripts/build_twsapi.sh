@@ -1,6 +1,13 @@
 #! /usr/bin/env bash
 
-# set -eux
+# This script will
+# * build a wheel for the TWS python api
+# * copy the wheel file into a local repo directory
+# * remove the files created during the build process
+#
+# tags | IBKR
+
+set -eu
 
 # sample url: 'https://interactivebrokers.github.io/downloads/twsapi_macunix.1022.01.zip'
 api_version='1022.01'
@@ -16,24 +23,27 @@ mkdir -p $download_dir
 #   Download the file to this directory
 wget $url -nc -P $download_dir
 
-unzip_dir="$HOME/software/unZipped/twsapi_${api_version}"
+build_root="$HOME/software/compileHere"
+mkdir -p build_root
 
-# If the unzip directory exists, remove it.
-if [ -d $unzip_dir ]
+build_dir="$build_root/twsapi_${api_version}"
+# Remove files created during prior builds
+if [ -d $build_dir ]
 then
-    echo "Removing $unzip_dir"
-    rm -rf $unzip_dir
+    echo "Removing $build_dir"
+    rm -rf $build_dir
 fi
 
 # unzip the files. For example, this will unzip files into
-# ~/software/unZipped/twsapi_1022.01 . The directory will be created.
-echo "unzipping the files into $unzip_dir"
-unzip -q $download_dir/$api_file -d $unzip_dir
+# ~/software/compileHere/twsapi_1022.01 . The directory will be created as part
+# of unzip.
+echo "unzipping the files into $build_dir"
+unzip -q $download_dir/$api_file -d $build_dir
 
 echo "building the wheel"
 # This will create a file such as
 # ~/software/unZipped/twsapi_1022.01/IBJts/source/pythonclient/dist/ibapi-10.22.1-py3-none-any.whl
-cd $unzip_dir/IBJts/source/pythonclient
+cd $build_dir/IBJts/source/pythonclient
 python3 setup.py bdist_wheel
 
 # To install the wheel
@@ -47,3 +57,17 @@ python3 setup.py bdist_wheel
 #
 # To remove ibapi
 #   % python -m pip uninstall ibapi
+
+# Copy the wheel into the local repo directory
+local_repo_dir="$HOME/software/dist"
+mkdir -p $local_repo_dir
+wheel_version=`python3 -c "from ibapi import get_version_string; version=get_version_string(); print(version)"`
+wheel_file=ibapi-${wheel_version}-py3-none-any.whl
+cp -v dist/$wheel_file $local_repo_dir
+
+# Remove files created during build
+if [ -d $build_dir ]
+then
+    echo "Removing $build_dir"
+    rm -rf $build_dir
+fi
