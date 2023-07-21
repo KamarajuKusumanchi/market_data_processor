@@ -1,8 +1,11 @@
 import os
+
+import numpy as np
 import pandas as pd
 import sys
 
 from tabulate import tabulate
+from typing import Any
 
 
 def to_fwf(df, fname_or_stdout, index=True):
@@ -40,3 +43,14 @@ def to_fwf(df, fname_or_stdout, index=True):
 
 
 pd.DataFrame.to_fwf = to_fwf
+
+def lookup_latest(x_val: Any, df: pd.DataFrame, x_label: str, y_label: str):
+    mask = df[x_label] <= x_val
+    x_base = df[mask][x_label].max()
+    if pd.isna(x_base):
+        y_val = np.nan
+    else:
+        mask2 = df[x_label] == x_base
+        y_val = df[mask2][y_label].iloc[-1]
+    return y_val
+
