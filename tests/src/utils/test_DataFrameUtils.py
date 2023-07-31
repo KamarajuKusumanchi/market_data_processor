@@ -50,7 +50,7 @@ def test_to_fwf_no_index(tmpdir):
 def test_lookup_latest(doi, y_expected):
     # Features of the dataset:
     # * The dates are not in chronological order
-    # * A date might occur in multiple rows (in which case, we should pick the latest.
+    # * A date might occur in multiple rows, in which case we should pick the latest.
     df = pd.DataFrame(
         [
             ["2023-01-01", 500],
