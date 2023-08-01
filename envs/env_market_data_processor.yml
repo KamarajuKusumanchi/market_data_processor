@@ -58,7 +58,9 @@ dependencies:
   - streamlit
   - pip:
     - fake-useragent
-    - finvizfinance
+      # Need finvizfinance >= 0.14.6rc1 as it fixes
+      # https://github.com/lit26/finvizfinance/issues/74
+    - finvizfinance >= 0.14.6rc1
       # Jupytext is useful to version control jupyter notebooks.
     - jupytext
       # ruamel.yaml.cmd gives a commandline utility called yaml
