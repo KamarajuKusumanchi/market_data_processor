@@ -22,6 +22,7 @@ def previous_month_end(dt_yyyymmdd: str) -> str:
     # If you want to set dt_yyyymmdd to the current date, use
     #   from datetime import date
     #   today = date.today().strftime('%Y%m%d')
+    # tags | last month end
     dt = datetime.strptime(dt_yyyymmdd, "%Y%m%d").date()
     first = dt.replace(day=1)
     last_month_end = first - timedelta(days=1)
