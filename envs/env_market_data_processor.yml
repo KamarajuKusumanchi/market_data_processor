@@ -12,7 +12,12 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-  - pandas
+    # per https://github.com/pydata/pandas-datareader/issues/970
+    # pandas_datareader.nasdaq_trader.get_nasdaq_symbols()
+    # does not work with (pandas 2.0.3, pandas-datareader 0.10.0)
+    # but works with (pandas 1.5.3, pandas-datareader 0.10.0)
+    # Stick to pandas 1.5.3 until this issue is resolved.
+  - pandas = 1.5.3
   - pycodestyle
     # Need pandas-datareader >= 0.10.0 as it has fixed yahoo reader which now
     # require headers.
