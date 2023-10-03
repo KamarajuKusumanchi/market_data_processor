@@ -46,6 +46,10 @@ dependencies:
     # is an update of PyYAML.
     # See https://yaml.org/ for more info.
   - ruamel.yaml
+    # yfinance library is the easiest and fastest way to download historical
+    # stock prices. Asof 2023-10-02, it is not available in the defaults
+    # channel. So pull it from conda-forge
+  - conda-forge::yfinance
     # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
     # version) but the defaults channel has version 1.16.0.
     # To pull streamlit from conda-forge, use
