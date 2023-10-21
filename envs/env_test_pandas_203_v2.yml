@@ -1,0 +1,25 @@
+# To create this environment
+#   conda env create -f <filename>
+# To update the environment
+#   conda env update -f <filename>
+# To export the environment
+#   conda env export
+# To remove the environment
+#   conda env remove --name <env_name>
+
+name: test_pandas_203_v2
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pandas=2.0.3
+    # packaging is required by pandas-datareader.
+  - packaging
+  - pip
+  - pip:
+    # With pandas-datareader 0.10.0, I encountered
+    # https://github.com/pydata/pandas-datareader/issues/970
+    # This is fixed in https://github.com/pydata/pandas-datareader/pull/968/files
+    # but there was no release of pandas-datareader that has this fix.
+    # Until then, pull it directly from github
+    - git+https://github.com/pydata/pandas-datareader
