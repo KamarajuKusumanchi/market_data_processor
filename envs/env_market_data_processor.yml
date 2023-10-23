@@ -30,6 +30,8 @@ dependencies:
   - jupyterlab
   - pytest
   - pip
+    # pandas -> dataframe -> plot() requires matplotlib
+  - matplotlib
   - black
   - csvkit
     # BeautifulSoup4, html5lib, lxml are needed for read_html(). But they are
