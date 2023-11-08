@@ -4,6 +4,7 @@ import pytest
 
 from src.utils.jupytext_utils import generated_by_jupytext
 
+
 @pytest.mark.parametrize(
     "file_path, result_expected",
     [
