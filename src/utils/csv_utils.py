@@ -1,5 +1,6 @@
 import csv
 import re
+import sys
 
 def reorder_cols(infile, outfile, new_fields):
     # Todo:
@@ -66,5 +67,7 @@ if __name__ == '__main__':
     with open(infile_path, newline='') as infile, \
         open(outfile_path, 'w', newline='') as outfile:
         reorder_cols(infile, outfile, new_fields)
-    infile.close()
-    outfile.close()
+    if infile is not sys.stdin:
+        infile.close()
+    if outfile is not sys.stdout:
+        outfile.close()
