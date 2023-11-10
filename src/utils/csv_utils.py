@@ -2,6 +2,9 @@ import csv
 import re
 
 def reorder_cols(infile_path, outfile_path, new_fields):
+    # Todo:
+    # * Add a test case for this.
+    # * Support the case where input is from stdin and output is to stdout (instead of files).
     # reorder columns in a csv file
     # reads from infile_path and writes to outfile_path.
     #
