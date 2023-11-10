@@ -1,7 +1,7 @@
 import csv
 import re
 
-def reorder_cols(infile_path, outfile_path, new_fields):
+def reorder_cols(infile, outfile, new_fields):
     # Todo:
     # * Add a test case for this.
     # * Support the case where input is from stdin and output is to stdout (instead of files).
@@ -21,45 +21,50 @@ def reorder_cols(infile_path, outfile_path, new_fields):
     #   where the csv file contains comments.
     empty_pattern = r"^\s*$"
     comment_pattern = r"^\s*#"
-    with open(infile_path, newline='') as infile:
-        # find the fields
-        reader = csv.reader(infile)
-        for row in reader:
-            if not row:
-                # If the input is a pure empty line (r"^$"), then row is an
-                # empty list. In that case, we can't do row[0] as it will throw
-                #   IndexError: list index out of range
-                # error
-                continue
-            else:
-                first_element = row[0]
-            if re.search(comment_pattern, first_element):
-                continue
-            elif re.search(empty_pattern, first_element):
-                continue
-            else:
-                fields = row
-                break
+
+    # find the fields
+    reader = csv.reader(infile, quoting=csv.QUOTE_NONE)
+    for row in reader:
+        if not row:
+            # If the input is a pure empty line (r"^$"), then row is an
+            # empty list. In that case, we can't do row[0] as it will throw
+            #   IndexError: list index out of range
+            # error
+            continue
+        else:
+            first_element = row[0]
+        if re.search(comment_pattern, first_element):
+            continue
+        elif re.search(empty_pattern, first_element):
+            continue
+        else:
+            fields = row
+            break
     # print(fields)
     new_field_index = [fields.index(i) for i in new_fields]
-    with open(infile_path, newline='') as infile,\
-        open(outfile_path, 'w', newline='') as outfile:
-        reader = csv.reader(infile, quoting=csv.QUOTE_NONE)
-        for row in reader:
-            if not row:
-                outfile.write("\n")
-                continue
-            else:
-                first_element = row[0]
-            if re.search(comment_pattern, first_element):
-                outfile.write(",".join(row) + "\n")
-            elif re.search(empty_pattern, first_element):
-                outfile.write(",".join(row) + "\n")
-            else:
-                new_row = [row[i] for i in new_field_index]
-                outfile.write(",".join(new_row) + "\n")
+
+    infile.seek(0)
+    reader = csv.reader(infile, quoting=csv.QUOTE_NONE)
+    for row in reader:
+        if not row:
+            outfile.write("\n")
+            continue
+        else:
+            first_element = row[0]
+        if re.search(comment_pattern, first_element):
+            outfile.write(",".join(row) + "\n")
+        elif re.search(empty_pattern, first_element):
+            outfile.write(",".join(row) + "\n")
+        else:
+            new_row = [row[i] for i in new_field_index]
+            outfile.write(",".join(new_row) + "\n")
 
 if __name__ == '__main__':
-    reorder_cols('../../tests/src/utils/csv_utils_data/input.csv',
-                 '../../tests/src/utils/csv_utils_data/output_expected.csv',
-                 ['A', 'C', 'D', 'E', 'B'])
+    infile_path = '../../tests/src/utils/csv_utils_data/input.csv'
+    outfile_path = '../../tests/src/utils/csv_utils_data/output_expected.csv'
+    new_fields = ['A', 'C', 'D', 'E', 'B']
+    with open(infile_path, newline='') as infile, \
+        open(outfile_path, 'w', newline='') as outfile:
+        reorder_cols(infile, outfile, new_fields)
+    infile.close()
+    outfile.close()
