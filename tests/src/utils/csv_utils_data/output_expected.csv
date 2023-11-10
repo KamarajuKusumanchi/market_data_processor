@@ -1,0 +1,13 @@
+# my awesome comment
+# comment, with, commas, in, it
+# comment, with, commas, and, "unbalanced, quotes, in, it
+# comment, with, commas, and, "unbalanced, quotes", in, it
+ 
+
+A,C,D,E,B
+a1,c1,d1,e1,b1
+# another awesome comment in between data
+a2,c2,d2,e2,b2
+a3,"c3,d3,e3,b3
+a4,"c 4",d4,e4,b4
+a5,c5,d5,e5 # inline comments are not yet supported,b5
