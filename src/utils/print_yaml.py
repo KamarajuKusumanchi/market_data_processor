@@ -20,7 +20,7 @@ yaml = ruamel.yaml.YAML(typ="safe", pure=True)
 
 
 def run_code():
-    parser = parse_arguments()
+    parser = create_parser()
     args = parser.parse_args()
     # Note:- file_name is of type _io.TextIOWrapper, not str
     file_name = args.file_name
@@ -29,7 +29,7 @@ def run_code():
     yaml.dump(data, sys.stdout)
 
 
-def parse_arguments():
+def create_parser():
     parser = argparse.ArgumentParser(
         description="Read and write a yaml file using using python."
     )
