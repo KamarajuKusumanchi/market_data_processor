@@ -2,7 +2,7 @@ import csv
 import re
 import sys
 
-def reorder_cols(infile, outfile, new_fields):
+def reorder_columns(infile, outfile, new_fields):
     # Todo:
     # * Add a test case for this.
     # * Support the case where input is from stdin and output is to stdout (instead of files).
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     new_fields = ['A', 'C', 'D', 'E', 'B']
     with open(infile_path, newline='') as infile, \
         open(outfile_path, 'w', newline='') as outfile:
-        reorder_cols(infile, outfile, new_fields)
+        reorder_columns(infile, outfile, new_fields)
     if infile is not sys.stdin:
         infile.close()
     if outfile is not sys.stdout:
