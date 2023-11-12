@@ -81,15 +81,15 @@ def create_parser():
     return parser
 
 if __name__ == '__main__':
-    input_file_path = '../../tests/src/scripts/reorder_columns_data/input.csv'
-    output_file_path = '../../tests/src/scripts/reorder_columns_data/output_expected.csv'
-    new_fields = ['A', 'C', 'D', 'E', 'B']
+    # input_file_path = '../../tests/src/scripts/reorder_columns_data/input.csv'
+    # output_file_path = '../../tests/src/scripts/reorder_columns_data/output_expected.csv'
+    # new_fields = ['A', 'C', 'D', 'E', 'B']
 
-    # parser = create_parser()
-    # args = parser.parse_args()
-    # input_file_path = args.input_file
-    # output_file_path = args.output_file
-    # new_fields = args.columns
+    parser = create_parser()
+    args = parser.parse_args()
+    input_file_path = args.input_file
+    output_file_path = args.output_file
+    new_fields = args.columns
 
     # with open(input_file_path, newline='') as infile, \
     #     open(output_file_path, 'w', newline='') as outfile:
