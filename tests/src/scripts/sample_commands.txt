@@ -1,0 +1,4 @@
+-----
+$ cd $market_data_processor
+$ python -m pytest -vv ./tests/src/scripts/test_reorder_columns.py
+-----
