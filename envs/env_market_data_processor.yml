@@ -12,17 +12,8 @@ channels:
   - defaults
 dependencies:
   - python=3.11
-    # per https://github.com/pydata/pandas-datareader/issues/970
-    # pandas_datareader.nasdaq_trader.get_nasdaq_symbols()
-    # does not work with (pandas 2.0.3, pandas-datareader 0.10.0)
-    # but works with (pandas 1.5.3, pandas-datareader 0.10.0)
-    # Stick to pandas 1.5.3 until this issue is resolved.
-  - pandas = 1.5.3
+  - pandas
   - pycodestyle
-    # Need pandas-datareader >= 0.10.0 as it has fixed yahoo reader which now
-    # require headers.
-    # Ref:- https://github.com/pydata/pandas-datareader/releases/tag/v0.10.0
-  - pandas-datareader >= 0.10
   - ipython
     # "jupyter" comes from the jupyter_core pacakge, and jupyter-lab comes from
     # the jupyterlab package. "jupyter-lab" replaces "jupyter notebook". Use
@@ -93,3 +84,23 @@ dependencies:
       #  find-links = file:///home/rajulocal/software/dist
       # and then specify ibapi as a normal pip dependency.
     - ibapi
+      # Need pandas-datareader >= 0.10.0 as it has fixed yahoo reader which now
+      # requires headers.
+      # Ref:- https://github.com/pydata/pandas-datareader/releases/tag/v0.10.0
+      # - pandas-datareader >= 0.10
+      #
+      # Per https://github.com/pydata/pandas-datareader/releases , asof
+      # 2023-11-11, the latest version of pandas-datareader is 0.10.0 . But
+      # pandas_datareader.nasdaq_trader.get_nasdaq_symbols() in this version
+      # does not work due to
+      # https://github.com/pydata/pandas-datareader/issues/970 .
+      # One way to work around it is to use pandas 1.5.3 as described in the
+      # bug report.
+      # But this bug is fixed in the main branch using
+      # https://github.com/pydata/pandas-datareader/pull/968/files .
+      # However, @bashtage (Kevin Sheppard) is hesitant to make a new release
+      # of pandas-datareader since many (most?) of the readers are currently
+      # broken (see https://github.com/pydata/pandas-datareader/issues/977 for
+      # more details). So, in the end, I decided to use the lastest version
+      # from github directly.
+    - git+https://github.com/pydata/pandas-datareader
