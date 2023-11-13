@@ -13,6 +13,8 @@
 #   where the csv file contains comments.
 # * https://bugs.python.org/issue1225769 is a proposal to implement comment
 #   rows in csv module. But it got rejected.
+#
+# tags | rearrange csv columns
 
 import argparse
 import csv
@@ -100,6 +102,15 @@ if __name__ == '__main__':
     #     open(output_file_path, 'w', newline='') as outfile:
     #     reorder_columns(infile, outfile, new_fields)
 
+    # From https://docs.python.org/3/library/csv.html
+    # -> Module Contents -> csv.reader() and csv.writer() say
+    #   If csvfile is a file object, it should be opened with newline=''
+    # -> Footnotes
+    #   If newline='' is not specified, newlines embedded inside quoted fields
+    #   will not be interpreted correctly, and on platforms that use \r\n
+    #   linendings on write an extra \r will be added. It should always be
+    #   safe to specify newline='', since the csv module does its own
+    #   (universal) newline handling.
     if input_file_path:
         infile = open(input_file_path, newline='')
     else:
