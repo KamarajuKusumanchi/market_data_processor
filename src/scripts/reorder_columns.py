@@ -1,20 +1,27 @@
 #! /usr/bin/env python
+# Reorder the columns of a csv file while preserving comments and empty lines.
+#
+# Notes:
+# * comments are lines that start with a '#' with optional whitespace
+#   characters before it.
+# * comments are assumed to span over the entire line.
+# * inline comments (ex:- 1,2,3 #comment here) are not supported.
+#
+# See also:
+# * https://stackoverflow.com/questions/33001490/python-re-ordering-columns-in-a-csv
+#   solves the same problem but the solution does not handle the case
+#   where the csv file contains comments.
+# * https://bugs.python.org/issue1225769 is a proposal to implement comment
+#   rows in csv module. But it got rejected.
+
 import argparse
 import csv
 import re
 import sys
 
 def reorder_columns(infile, outfile, new_fields):
-    # Reorder the columns of a csv file while preserving comments and empty
-    # lines.
-    #
-    # Notes:
-    # * comment lines are lines that start with '#' with an optional white
-    #   space characters before it.
-    # * comments are assumed to span over the entire line.
-    # * inline comments (ex:- 1,2,3 #comment here) are not supported.
-    #
     # Function reads input from infile and writes to outfile.
+    # new_fields is a list of strings.
     #
     # Requirements:
     # * infile can be sys.stdin or a file object.
@@ -24,11 +31,6 @@ def reorder_columns(infile, outfile, new_fields):
     #   For example, we can't do one pass to find the fields and another pass
     #   to rearrange them. That would not work if the input is sys.stdin as we
     #   can't do seek(0) on it.
-    #
-    # Close but no cigar:
-    # * https://stackoverflow.com/questions/33001490/python-re-ordering-columns-in-a-csv
-    #   solves the same problem but the solution does not handle the case
-    #   where the csv file contains comments.
     empty_pattern = r"^\s*$"
     comment_pattern = r"^\s*#"
     header_not_found = True
