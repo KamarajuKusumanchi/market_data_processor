@@ -5,14 +5,16 @@ import re
 import sys
 
 def reorder_columns(infile, outfile, new_fields):
-    # Todo:
-    # * Add a test case for this.
-    # reorder columns in a csv file
-    # reads from infile and writes to outfile.
+    # Reorder the columns of a csv file while preserving comments and empty
+    # lines.
     #
-    # Assumptions:
+    # Notes:
+    # * comment lines are lines that start with '#' with an optional white
+    #   space characters before it.
     # * comments are assumed to span over the entire line.
     # * inline comments (ex:- 1,2,3 #comment here) are not supported.
+    #
+    # Function reads input from infile and writes to outfile.
     #
     # Requirements:
     # * infile can be sys.stdin or a file object.
@@ -46,6 +48,7 @@ def reorder_columns(infile, outfile, new_fields):
         elif re.search(empty_pattern, first_element):
             outfile.write(",".join(row) + "\n")
         else:
+            # The first line that is not a comment line or empty line is the header.
             if header_not_found:
                 header_not_found = False
                 fields = row
@@ -57,7 +60,7 @@ def reorder_columns(infile, outfile, new_fields):
 
 def create_parser():
     parser = argparse.ArgumentParser(
-        description="Reorder columns in a csv file while preserving comments and empty lines."
+        description="Reorder the columns of a csv file while preserving comments and empty lines."
     )
     # Per https://bugs.python.org/issue24739 argparse.FileType does not allow newline argument.
     # So we can't do something like
