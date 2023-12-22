@@ -17,5 +17,6 @@ def test_tbill_yield(P, r, yield_expected):
 def test_tbill_yield_long_maturity():
     P = 99.5905
     r = 183
+    # Using the example listed in https://docs.pytest.org/en/latest/how-to/assert.html to catch the AssertionError.
     with pytest.raises(AssertionError):
         tbill_yield(P, r)
