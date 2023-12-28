@@ -11,7 +11,7 @@ name: market_data_processor
 channels:
   - defaults
 dependencies:
-  - python=3.11
+  - python=3.12
   - pandas
   - pycodestyle
   - ipython
@@ -24,6 +24,7 @@ dependencies:
     # pandas -> dataframe -> plot() requires matplotlib
   - matplotlib
   - black
+    # csvkit is useful for working with csv files.
   - csvkit
     # BeautifulSoup4, html5lib, lxml are needed for read_html(). But they are
     # listed as optional dependencies.  To be specific, BeautifulSoup4 can work
@@ -104,3 +105,4 @@ dependencies:
       # more details). So, in the end, I decided to use the lastest version
       # from github directly.
     - git+https://github.com/pydata/pandas-datareader
+    - finance-dl
