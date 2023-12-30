@@ -1,0 +1,19 @@
+# To create this environment
+#   conda env create -f <filename>
+# To update the environment
+#   conda env update -f <filename>
+# To export the environment
+#   conda env export
+# To remove the environment
+#   conda env remove --name <env_name>
+
+name: test_finance-dl
+channels:
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      # - finance-dl
+    - git+https://github.com/jbms/finance-dl
+      # - finance-dl==1.3.3

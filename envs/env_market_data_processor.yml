@@ -105,4 +105,29 @@ dependencies:
       # more details). So, in the end, I decided to use the lastest version
       # from github directly.
     - git+https://github.com/pydata/pandas-datareader
-    - finance-dl
+      # Initially, I used
+      # - finance-dl
+      # which pulled finance-dl 1.3.3 (latest release asof 2023-12-28). With
+      # it, I am getting
+      # % python -m finance_dl.cli --config-module finance_dl_config --config schwab
+      # ...
+      #     File "/opt/rajulocal/miniconda3/envs/market_data_processor/lib/python3.12/site-packages/finance_dl/scrape_lib.py", line 176, in __init__
+      #       self.driver = driver_class(
+      #                     ^^^^^^^^^^^^^
+      #   TypeError: WebDriver.__init__() got an unexpected keyword argument 'executable_path'
+      #      File "/opt/rajulocal/miniconda3/envs/market_data_processor/lib/python3.12/site-packages/finance_dl/scrape_lib.py", line 176, in __init__
+      #
+      # To get around it, I tried using the latest version from github directly.
+      # - git+https://github.com/jbms/finance-dl
+      #
+      # That is giving
+      # % python -m finance_dl.cli --config-module finance_dl_config --config schwab
+      #   File "/opt/rajulocal/miniconda3/envs/market_data_processor/lib/python3.12/site-packages/finance_dl/scrape_lib.py", line 146, in __init__
+      #     chrome_options.binary_location = os.getenv("CHROMEDRIVER_CHROME_BINARY")
+      #     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      #   File "/opt/rajulocal/miniconda3/envs/market_data_processor/lib/python3.12/site-packages/selenium/webdriver/chromium/options.py", line 52, in binary_location
+      #     raise TypeError(self.BINARY_LOCATION_ERROR)
+      # TypeError: Binary Location Must be a String
+      #
+      # I reported the above error as https://github.com/jbms/finance-dl/issues/93
+    - git+https://github.com/jbms/finance-dl
