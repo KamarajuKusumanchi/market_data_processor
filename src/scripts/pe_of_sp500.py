@@ -6,6 +6,7 @@ from datetime import date
 
 from pandas import DataFrame
 
+import project_root
 from key_stats import print_full
 
 
