@@ -1,5 +1,11 @@
 #! /usr/bin/env python3
 # Compute the P/E of S&P500 index
+
+# Sample run:
+#  % ./src/scripts/pe_of_sp500.py
+#           cob  index    market_cap      earnings        pe  earnings_yield
+# 0  2024-02-05  sp500  4.595309e+13  1.796693e+12  25.57649        3.909841
+
 import pandas as pd
 from finvizfinance.screener.overview import Overview
 from datetime import date
