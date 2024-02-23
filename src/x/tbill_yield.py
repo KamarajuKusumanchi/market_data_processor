@@ -46,5 +46,5 @@ def tbill_yield_long_maturity(P, r, y):
 
 
 if __name__ == "__main__":
-    i = tbill_yield(99.5905, 183)
+    i = tbill_yield(99.5905, 183, 366)
     print(i)
