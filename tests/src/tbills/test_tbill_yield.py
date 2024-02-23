@@ -1,5 +1,5 @@
 import pytest
-from src.x.tbill_yield import (
+from src.tbills.tbill_yield import (
     tbill_yield,
     tbill_yield_short_maturity,
     tbill_yield_long_maturity,
