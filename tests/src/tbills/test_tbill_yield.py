@@ -74,7 +74,7 @@ def test_tax_equivalent_treasury_yield():
     te_got = 5.363
     te_expected = tax_equivalent_treasury_yield(t, f, s)
     assert te_got == te_expected, (
-        f"Tax equivalent Treasury yield calculation is broken."
+        f"Tax equivalent Treasury yield calculation is broken. "
         f"For (t, f, s) = ({t}, {f}, {s}), te_got = {te_got}, "
         f"te_expected = {te_expected}"
     )
