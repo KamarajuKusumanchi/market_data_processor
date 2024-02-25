@@ -45,6 +45,24 @@ def tbill_yield_long_maturity(P, r, y):
     return i
 
 
+def tax_equivalent_treasury_yield(t, f, s):
+    # Let's say, t is the yield of a Treasury, f is the federal tax rate,
+    # and s is the state tax rate. Then, the tax-equivalent yield of a Treasury
+    # would be  t * (1-f) / (1-f-s)
+    # Ref:- https://thefinancebuff.com/brokered-cd-vs-direct-cd-vs-treasury-worth-it.html
+    # For example, for a Treasury yield of 4.95%, federal tax rate of 22%,
+    # state tax rate of 6%, the tax equivalent Treasury yield would be
+    # 4.95 * (1-0.22) / (1-0.22-0.06) = 5.363%
+    #
+    # Sample inputs: (t, f, s) = (4.95, 22, 6)
+    # Sample output: 5.363
+    f /= 100
+    s /= 100
+    te = t * (1 - f) / (1 - f - s)
+    te = round(te, 3)
+    return te
+
+
 if __name__ == "__main__":
     i = tbill_yield(99.5905, 183, 366)
     print(i)
