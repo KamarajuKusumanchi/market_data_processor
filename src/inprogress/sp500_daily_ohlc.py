@@ -2,6 +2,7 @@ import yfinance as yf
 from datetime import datetime, date
 
 # data is not reproducible for these date ranges
+df = yf.download(["SPY"], date(2023, 1, 1), date(2024, 7, 2))
 # df = yf.download(["SPY"], date(2023, 12, 1), date(2024, 5, 31))
 # df = yf.download(["SPY"], date(2023, 12, 1), date(2024, 4, 30))
 # df = yf.download(["SPY"], date(2023, 12, 1), date(2024, 2, 29))
@@ -9,7 +10,7 @@ from datetime import datetime, date
 # df = yf.download(["SPY"], date(2023, 12, 1), date(2024, 1, 15))
 # df = yf.download(["SPY"], date(2024, 1, 1), date(2024, 1, 15))
 # df = yf.download(["SPY"], date(2024, 1, 8), date(2024, 1, 15))
-df = yf.download(["SPY"], date(2024, 1, 8), date(2024, 1, 11))
+# df = yf.download(["SPY"], date(2024, 1, 8), date(2024, 1, 11))
 
 # data is reproducible for these date ranges
 # df = yf.download(["SPY"], date(2024, 1, 1), date(2024, 5, 31))
