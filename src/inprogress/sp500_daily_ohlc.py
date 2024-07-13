@@ -1,6 +1,8 @@
 import yfinance as yf
 from datetime import datetime, date
 
+yf.enable_debug_mode()
+
 df = yf.download(["SPY"], date(2023, 1, 1), date(2024, 7, 2))
 
 time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
