@@ -13,23 +13,34 @@ user_data_dir = Path(
 tickers = ["SPY"]
 start = date(2023, 1, 1)
 end = date(2024, 7, 2)
-daily_df = yf.download(tickers, start, end)
+
+# By default, the price data comes with 13 digits of precision. This is good
+# for computing "Adj Close". But I noticed that "Adj Close" numbers change
+# from run to run in the last 9 digits. So I decided to use
+# rounding=True which rounds values to 2 decimal places and reduces the
+# diffs from successive runs.
+daily_df = yf.download(tickers, start, end, rounding=True)
 daily_file = os.path.join(user_data_dir, "daily.csv")
 
 print(f"storing daily SPY returns in {daily_file}")
 daily_df.to_csv(daily_file)
 
 
-monthly_df = daily_df.resample("ME").agg(
-    {
-        "Open": "first",
-        "High": "max",
-        "Low": "min",
-        "Close": "last",
-        "Adj Close": "last",
-        "Volume": "sum",
-    }
-)
+def daily_ohlc_to_month_end_ohlc(daily):
+    monthly = daily.resample("ME").agg(
+        {
+            "Open": "first",
+            "High": "max",
+            "Low": "min",
+            "Close": "last",
+            "Adj Close": "last",
+            "Volume": "sum",
+        }
+    )
+    return monthly
+
+monthly_df = daily_ohlc_to_month_end_ohlc(daily_df)
+
 monthly_file = os.path.join(user_data_dir, "monthly.csv")
 print(f"storing monthly SPY returns in {monthly_file}")
 monthly_df.to_csv(monthly_file)
