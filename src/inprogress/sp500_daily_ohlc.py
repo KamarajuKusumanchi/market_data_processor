@@ -1,5 +1,6 @@
 # Sample code used to report issue
-# https://github.com/ranaroussi/yfinance/issues/1982 - Inconsistent results between two successive runs
+# "https://github.com/ranaroussi/yfinance/issues/1982 - Inconsistent results
+# between two successive runs"
 
 import yfinance as yf
 from datetime import datetime, date

@@ -14,11 +14,12 @@ tickers = ["SPY"]
 start = date(2023, 1, 1)
 end = date(2024, 7, 2)
 
-# By default, the price data comes with 13 digits of precision. This is good
-# for computing "Adj Close". But I noticed that "Adj Close" numbers change
-# from run to run in the last 9 digits. So I decided to use
-# rounding=True which rounds values to 2 decimal places and reduces the
-# diffs from successive runs.
+# By default, the price data comes with 13 digits of precision. But I noticed
+# that the numbers change slightly from run to run. I reported this as
+# "https://github.com/ranaroussi/yfinance/issues/1982 - Inconsistent results
+# between two successive runs".
+# In the meantime, I decided to use "rounding=True" which rounds values to 2
+# decimal places. This will reduce the diffs from successive runs.
 daily_df = yf.download(tickers, start, end, rounding=True)
 daily_file = os.path.join(user_data_dir, "daily.csv")
 
@@ -38,6 +39,7 @@ def daily_ohlc_to_month_end_ohlc(daily):
         }
     )
     return monthly
+
 
 monthly_df = daily_ohlc_to_month_end_ohlc(daily_df)
 
