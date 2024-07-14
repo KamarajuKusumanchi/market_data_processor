@@ -1,6 +1,6 @@
 import os
 import yfinance as yf
-from datetime import date
+from datetime import datetime, date
 from platformdirs import user_data_dir
 from pathlib import Path
 
@@ -9,6 +9,7 @@ version = "0.0.1"
 user_data_dir = Path(
     user_data_dir(appname=appname, version=version, ensure_exists=True)
 )
+run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 tickers = ["SPY"]
 start = date(2023, 1, 1)
@@ -21,7 +22,7 @@ end = date(2024, 7, 2)
 # In the meantime, I decided to use "rounding=True" which rounds values to 2
 # decimal places. This will reduce the diffs from successive runs.
 daily_df = yf.download(tickers, start, end, rounding=True)
-daily_file = os.path.join(user_data_dir, "daily.csv")
+daily_file = os.path.join(user_data_dir, f"daily_{run_time_stamp}.csv")
 
 print(f"storing daily SPY returns in {daily_file}")
 daily_df.to_csv(daily_file)
@@ -43,6 +44,6 @@ def daily_ohlc_to_month_end_ohlc(daily):
 
 monthly_df = daily_ohlc_to_month_end_ohlc(daily_df)
 
-monthly_file = os.path.join(user_data_dir, "monthly.csv")
+monthly_file = os.path.join(user_data_dir, f"monthly_{run_time_stamp}.csv")
 print(f"storing monthly SPY returns in {monthly_file}")
 monthly_df.to_csv(monthly_file)
