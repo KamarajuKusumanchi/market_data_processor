@@ -14,8 +14,8 @@ user_data_dir = Path(
 run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
 tickers = ["SPY"]
-start_date = date(2023, 1, 1)
-end_date = date(2024, 7, 2)
+start_date = date(2024, 1, 1)
+end_date = date(2024, 6, 30)
 
 # By default, the price data comes with 13 digits of precision. But I noticed
 # that the numbers change slightly from run to run. I reported this as
