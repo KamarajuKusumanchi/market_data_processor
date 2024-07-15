@@ -10,7 +10,13 @@ from datetime import datetime, date
 # df = yf.download(["SPY"], date(2023, 1, 1), date(2024, 7, 2))
 # auto_adjust = True
 auto_adjust = False
-df = yf.download(["SPY"], start=date(2023, 1, 1), end=date(2024, 7, 2), auto_adjust=auto_adjust, progress=False)
+df = yf.download(
+    ["SPY"],
+    start=date(2023, 1, 1),
+    end=date(2024, 7, 2),
+    auto_adjust=auto_adjust,
+    progress=False,
+)
 
 time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 file_name = f"daily_auto_adjust_{auto_adjust}_{time_stamp}.csv"
