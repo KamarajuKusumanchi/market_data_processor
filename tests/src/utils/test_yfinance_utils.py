@@ -2,7 +2,6 @@ import os.path
 import pandas.testing as pdt
 
 import pandas as pd
-import yfinance as yf
 from src.utils.yfinance_utils import daily_ohlc_to_month_end_ohlc
 
 
