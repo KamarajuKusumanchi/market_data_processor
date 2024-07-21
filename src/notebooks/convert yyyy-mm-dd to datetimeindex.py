@@ -13,6 +13,14 @@
 #     name: python3
 # ---
 
+# + active=""
+# Summary:
+# Say you have a dataframe df where the column 'Date' has strings of the form 'yyyy-mm-dd'. This column can be converted to DatetimeIndex using
+#
+# df['Date'] = pd.to_datetime(df['Date'])
+# df.set_index('Date', inplace=True)
+# -
+
 import io
 import pandas as pd
 data = """
