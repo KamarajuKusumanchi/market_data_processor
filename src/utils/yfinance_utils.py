@@ -1,4 +1,4 @@
-def daily_ohlc_to_month_end_ohlc(daily):
+def daily_ohlcv_to_month_end_ohlcv(daily):
     monthly = daily.resample("ME").agg(
         {
             "Open": "first",

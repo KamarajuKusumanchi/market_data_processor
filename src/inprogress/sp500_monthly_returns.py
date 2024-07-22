@@ -4,7 +4,7 @@ from datetime import datetime, date
 from platformdirs import user_data_dir
 from pathlib import Path
 
-from src.utils.yfinance_utils import daily_ohlc_to_month_end_ohlc
+from src.utils.yfinance_utils import daily_ohlcv_to_month_end_ohlcv
 
 appname = "market_data_processor"
 version = "0.0.1"
@@ -30,7 +30,7 @@ daily_file = os.path.join(user_data_dir, f"daily_{run_time_stamp}.csv")
 print(f"storing daily SPY returns in {daily_file}")
 daily_df.to_csv(daily_file)
 
-monthly_df = daily_ohlc_to_month_end_ohlc(daily_df)
+monthly_df = daily_ohlcv_to_month_end_ohlcv(daily_df)
 
 monthly_file = os.path.join(user_data_dir, f"monthly_{run_time_stamp}.csv")
 print(f"storing monthly SPY returns in {monthly_file}")

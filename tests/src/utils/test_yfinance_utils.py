@@ -2,7 +2,7 @@ import os.path
 import pandas.testing as pdt
 
 import pandas as pd
-from src.utils.yfinance_utils import daily_ohlc_to_month_end_ohlc
+from src.utils.yfinance_utils import daily_ohlcv_to_month_end_ohlcv
 
 
 def test_daily_ohlc_to_month_end_ohlc():
@@ -18,7 +18,7 @@ def test_daily_ohlc_to_month_end_ohlc():
     daily_df['Date'] = pd.to_datetime(daily_df['Date'])
     daily_df.set_index("Date", inplace=True)
 
-    monthly_df_got = daily_ohlc_to_month_end_ohlc(daily_df)
+    monthly_df_got = daily_ohlcv_to_month_end_ohlcv(daily_df)
 
     monthly_file_name = os.path.join(
         data_dir, "monthly_ohlc_spy_20240101_20240630_from_yahoo.csv"
