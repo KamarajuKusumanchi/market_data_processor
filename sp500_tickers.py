@@ -47,6 +47,11 @@ def get_sp500_table(filter_columns=None):
                        for row in rows[1:]],
                       columns=columns)
 
+    # Change tickers such as (BF.B, BRK.B) to (BF-B, BRK-B).
+    # Yahoo finance uses the convention BRK-B instead of BRK.B
+    # So this becomes an issue when trying to download data from there.
+    df['Symbol'] = df['Symbol'].str.replace('.', '-')
+
     if filter_columns is not None:
         if isinstance(filter_columns, str):
             filter_columns = [filter_columns]
@@ -56,8 +61,10 @@ def get_sp500_table(filter_columns=None):
 
 def get_sp500_tickers():
     '''Get the list of S&P 500 tickers'''
-    coi = ['Symbol']
-    return get_sp500_table(coi).tolist()
+    coi = 'Symbol'
+    table = get_sp500_table(coi)
+    tickers = table[coi].values.tolist()
+    return tickers
 
 
 def get_sp500_df():
