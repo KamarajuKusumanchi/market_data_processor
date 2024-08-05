@@ -12,7 +12,9 @@ channels:
   - defaults
 dependencies:
   - python=3.12
-  - pandas
+    # The 'ME' offset does not work in pandas 2.1.4 but works in 2.2.2
+    # See also: https://pandas.pydata.org/docs/whatsnew/v2.2.0.html#deprecate-aliases-m-q-y-etc-in-favour-of-me-qe-ye-etc-for-offsets
+  - pandas >= 2.2.2
   - pycodestyle
   - ipython
     # "jupyter" comes from the jupyter_core pacakge, and jupyter-lab comes from
