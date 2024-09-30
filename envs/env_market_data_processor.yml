@@ -47,6 +47,9 @@ dependencies:
     # is an update of PyYAML.
     # See https://yaml.org/ for more info.
   - ruamel.yaml
+    # pdfannots outputs annotations in markdown format. Use pandoc to convert them into zimwiki format.
+    # pandoc is used by jupyter-lab to export ipynb file to pdf
+  - pandoc
     # yfinance library is the easiest and fastest way to download historical
     # stock prices. Asof 2024-07-04, it is not available in the defaults
     # channel. So pull it from conda-forge

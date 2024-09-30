@@ -6,7 +6,7 @@
 #       extension: .py
 #       format_name: light
 #       format_version: '1.5'
-#       jupytext_version: 1.16.2
+#       jupytext_version: 1.16.4
 #   kernelspec:
 #     display_name: Python 3 (ipykernel)
 #     language: python
@@ -28,12 +28,14 @@
 # Resistance 1: R1 = 2 PP - L
 #
 # See also:
+#
 # * https://www.investopedia.com/trading/using-pivot-points-for-predictions/ - gives formulas for other things such as S2, R2
 # * "Algorithmic Trading with Interactive Brokers - Matthew Scarpino" -> 14.4.1 Computing Support and Resistance - discusses the same approach outlined in https://www.investopedia.com/trading/using-pivot-points-for-predictions/
 #
 # tags | how to compute support and resistance levels
 #
 # Credits:
+#
 # * https://github.com/Aditya-dom/Quantfinance-with-backtesting/blob/main/fy/technical_indicators/pivot_point.py
 #   * initial version of the code is copied from here.
 #   * computes other things such as S2, R2, S3, R3
@@ -47,6 +49,7 @@
 # --->
 #
 # Todo:
+#
 # * S1, R1 are computed using unadjusted (H, L, C). Is that correct? or should we use adjusted (H, L, C)?
 
 # +
