@@ -57,6 +57,7 @@ import yfinance as yf
 from datetime import datetime, date
 import pandas as pd
 
+# Get OHLC data
 df = yf.download(
     ["SPY"],
     start=date(2024, 8, 1),
@@ -68,6 +69,7 @@ df = yf.download(
 df
 # -
 
+# compute the support and resistance levels
 PP = (df['High'] + df['Low'] + df['Close'])/3
 S1 = 2 * PP - df['High']
 R1 = 2 * PP - df['Low']
@@ -76,6 +78,7 @@ psr = {'PP': PP, 'S1': S1, 'R1': R1}
 PSR = pd.DataFrame(psr).shift()
 PSR
 
+# Join OHLC data with the technicals
 df2 = df.join(PSR).dropna()
 df2
 
