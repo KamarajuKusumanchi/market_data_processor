@@ -1,9 +1,8 @@
 #! /usr/bin/env python
 
 # Sample usage:
-#  % pwd
-# /home/rajulocal/work/github/market_data_processor/src/utils
-#  % mkdir -p ../../../market_data/special_dividends
+#  % cd ${market_data_processor}/src/utils
+#  % mkdir -p ${market_data}/special_dividends
 #  % ./special_dividends.py > ../../../market_data/special_dividends/special_dividends.csv
 
 import yfinance as yf
