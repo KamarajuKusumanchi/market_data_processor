@@ -13,7 +13,7 @@ import sys
 
 if __name__ == "__main__":
     news = yf.Search("declares special dividend", news_count=10).news
-    df = pd.DataFrame(news)
+    df = pd.DataFrame(news).sort_values(by='providerPublishTime')
     df["providerPublishTime"] = df["providerPublishTime"].apply(datetime.fromtimestamp)
     df = df[["providerPublishTime", "relatedTickers", "title", "link", "publisher"]]
     df.to_csv(sys.stdout, index=False)
