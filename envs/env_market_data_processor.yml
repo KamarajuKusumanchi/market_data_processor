@@ -11,7 +11,7 @@ name: market_data_processor
 channels:
   - defaults
 dependencies:
-  - python=3.12
+  - python=3.13
     # The 'ME' offset does not work in pandas 2.1.4 but works in 2.2.2
     # See also: https://pandas.pydata.org/docs/whatsnew/v2.2.0.html#deprecate-aliases-m-q-y-etc-in-favour-of-me-qe-ye-etc-for-offsets
   - pandas >= 2.2.2
@@ -56,7 +56,9 @@ dependencies:
     #
     # With yfinance 0.2.26, I encountered https://github.com/ranaroussi/yfinance/issues/1592
     # With yfinance 0.2.33, I encountered https://github.com/ranaroussi/yfinance/issues/1894
-  - conda-forge::yfinance >= 0.2.34
+    #
+    # The Search attribute is available only in yfinance >= 0.2.51.
+  - conda-forge::yfinance >= 0.2.51
     # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
     # version) but the defaults channel has version 1.16.0.
     # To pull streamlit from conda-forge, use
