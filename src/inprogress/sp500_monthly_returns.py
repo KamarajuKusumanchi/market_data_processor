@@ -6,6 +6,7 @@ from datetime import datetime, date
 from platformdirs import user_data_dir
 from pathlib import Path
 
+import project_root
 from src.utils.yfinance_utils import daily_ohlcv_to_month_end_ohlcv
 
 appname = "market_data_processor"
