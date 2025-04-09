@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 import os
 import yfinance as yf
 from datetime import datetime, date
@@ -13,7 +15,14 @@ user_data_dir = Path(
 )
 run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
-tickers = ["SPY"]
+# asof | 2025-04-08
+# expense ratio of SPY is 9.45 bps [1] and that of VOO is 3 bps [2]. So it is
+# better to buy VOO than SPY.
+# 
+# [1] - https://www.ssga.com/us/en/intermediary/etfs/spdr-sp-500-etf-trust-spy
+# [2] - https://investor.vanguard.com/investment-products/etfs/profile/voo
+
+tickers = ["VOO"]
 start_date = date(2024, 1, 1)
 end_date = date(2024, 6, 30)
 
