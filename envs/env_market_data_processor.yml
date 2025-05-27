@@ -73,13 +73,20 @@ dependencies:
     #   Collecting package metadata (repodata.json): - Killed
     # So, decided to only use the defaults channel for now for streamlit.
   - streamlit
+    # Jupytext is useful to version control jupyter notebooks.
+    # Upstream website (https://github.com/mwouts/jupytext) suggests to use conda-forge
+  - conda-forge::jupytext
+    # to compare package versions
+  - packaging
+    # autocommand is a transitive dependency that is getting picked up from one
+    # of the PyPi dependencies. Adding it here so that it is downloaded from
+    # conda-forge itself.
+  - conda-forge::autocommand
   - pip:
     - fake-useragent
       # Need finvizfinance >= 0.14.6rc1 as it fixes
       # https://github.com/lit26/finvizfinance/issues/74
     - finvizfinance >= 0.14.6rc1
-      # Jupytext is useful to version control jupyter notebooks.
-    - jupytext
       # ruamel.yaml.cmd gives a commandline utility called yaml
       # Ref: https://yaml.readthedocs.io/en/latest/install.html
     - ruamel.yaml.cmd
