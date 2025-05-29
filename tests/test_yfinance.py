@@ -19,5 +19,6 @@ def test_ticker_info():
 
 def test_news_search():
     news_count = 10
-    news = yf.Search("declares special dividend", news_count=news_count).news
+    # news = yf.Search("declares special dividend", news_count=news_count).news
+    news = yf.Search("nvidia", news_count=news_count).news
     assert len(news) == news_count
