@@ -82,6 +82,17 @@ dependencies:
     # of the PyPi dependencies. Adding it here so that it is downloaded from
     # conda-forge itself.
   - conda-forge::autocommand
+    # On Windows, I experienced errors such as
+    # >>> import requests
+    # >>> requests.get('http://www.github.com', proxies={'https_proxy': 'myhttp.proxy.com', 'http_proxy': 'myhttps.proxy.com'})
+    # ...
+    # requests.exceptions.SSLError: HTTPSConnectionPool(host='www.github.com',
+    #   port=443): Max retries exceeded with url: / (Caused by
+    #   SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED]
+    #   certificate verify failed: unable to get local issuer certificate
+    #   (_ssl.c:1028)')))
+    # installing pip-system-certs solved that.
+  - conda-forge:pip-system-certs
   - pip:
     - fake-useragent
       # Need finvizfinance >= 0.14.6rc1 as it fixes
