@@ -92,7 +92,7 @@ dependencies:
     #   certificate verify failed: unable to get local issuer certificate
     #   (_ssl.c:1028)')))
     # installing pip-system-certs solved that.
-  - conda-forge:pip-system-certs
+  - conda-forge::pip-system-certs
   - pip:
     - fake-useragent
       # Need finvizfinance >= 0.14.6rc1 as it fixes
