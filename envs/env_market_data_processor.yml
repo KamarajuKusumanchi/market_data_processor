@@ -50,19 +50,6 @@ dependencies:
     # pdfannots outputs annotations in markdown format. Use pandoc to convert them into zimwiki format.
     # pandoc is used by jupyter-lab to export ipynb file to pdf
   - pandoc
-    # yfinance library is the easiest and fastest way to download historical
-    # stock prices. Asof 2025-02-22, it is not available in the defaults
-    # channel. You have to pull it from conda-forge
-    #
-    # With yfinance 0.2.26, I encountered https://github.com/ranaroussi/yfinance/issues/1592
-    # With yfinance 0.2.33, I encountered https://github.com/ranaroussi/yfinance/issues/1894
-    #
-    # The Search attribute is available only in yfinance >= 0.2.51.
-    #
-    # yfinance 0.2.51 is giving the following error
-    #   429 Client Error: Too Many Requests for url
-    # But yfinance 0.2.54 does not give that error.
-  - conda-forge::yfinance >= 0.2.54
     # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
     # version) but the defaults channel has version 1.16.0.
     # To pull streamlit from conda-forge, use
@@ -94,6 +81,24 @@ dependencies:
     # installing pip-system-certs solved that.
   - conda-forge::pip-system-certs
   - pip:
+      # yfinance library is the easiest and fastest way to download historical
+      # stock prices. Asof 2025-06-06, it is not available in the defaults
+      # channel. It is packaged in conda-forge. But one of its dependencies
+      # curl-cffi is not packaged for windows in conda-forge.
+      # Upstream only supports pip. So install it from pip.
+      # Ref:- https://github.com/conda-forge/curl-cffi-feedstock/issues/8
+      #
+      # With yfinance 0.2.26, I encountered https://github.com/ranaroussi/yfinance/issues/1592
+      # With yfinance 0.2.33, I encountered https://github.com/ranaroussi/yfinance/issues/1894
+      #
+      # The Search attribute is available only in yfinance >= 0.2.51.
+      #
+      # yfinance 0.2.51 is giving the following error
+      #   429 Client Error: Too Many Requests for url
+      # But yfinance 0.2.54 does not give that error.
+      # yfinance 0.2.57 is giving the following error
+      #   YFRateLimitError: Too Many Requests. Rate limited. Try after a while.
+    - yfinance >= 0.2.61
     - fake-useragent
       # Need finvizfinance >= 0.14.6rc1 as it fixes
       # https://github.com/lit26/finvizfinance/issues/74
