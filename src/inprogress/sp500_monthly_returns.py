@@ -24,7 +24,7 @@ run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 # [2] - https://investor.vanguard.com/investment-products/etfs/profile/voo
 
 tickers = ["VOO"]
-start_date = date(2025, 1, 1)
+start_date = date(2024, 12, 1)
 end_date = date(2025, 6, 3)
 
 # By default, the price data comes with 13 digits of precision. But I noticed
@@ -35,6 +35,11 @@ end_date = date(2025, 6, 3)
 # decimal places. This will reduce the diffs from successive runs.
 daily_df = yf.download(tickers, start=start_date, end=end_date,
                        auto_adjust=False, progress=False, rounding=True)
+
+# This gives a dataframe with Multi-Level columns
+# Flatten it using the recipe in https://stackoverflow.com/questions/63107594/how-to-deal-with-multi-level-column-names-downloaded-with-yfinance/63107801#63107801
+daily_df = daily_df.stack(level=1).rename_axis(['Date', 'Ticker']).reset_index(level=1)
+
 daily_file = os.path.join(user_data_dir, f"daily_{run_time_stamp}.csv")
 
 print(f"storing daily SPY returns in {daily_file}")
