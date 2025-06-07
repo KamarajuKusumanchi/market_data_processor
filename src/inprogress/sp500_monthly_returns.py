@@ -24,8 +24,8 @@ run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 # [2] - https://investor.vanguard.com/investment-products/etfs/profile/voo
 
 tickers = ["VOO"]
-start_date = date(2024, 1, 1)
-end_date = date(2024, 6, 30)
+start_date = date(2025, 1, 1)
+end_date = date(2025, 6, 3)
 
 # By default, the price data comes with 13 digits of precision. But I noticed
 # that the numbers change slightly from run to run. I reported this as
