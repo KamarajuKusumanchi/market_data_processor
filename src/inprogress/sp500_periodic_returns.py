@@ -1,5 +1,7 @@
 #! /usr/bin/env python
 
+# The term "periodic returns" encompasses things like monthly and weekly returns.
+
 import os
 import yfinance as yf
 from datetime import datetime, date
@@ -7,7 +9,7 @@ from platformdirs import user_data_dir
 from pathlib import Path
 
 import project_root
-from src.utils.yfinance_utils import daily_ohlcv_to_month_end_ohlcv
+from src.utils.yfinance_utils import daily_ohlcv_to_month_end_ohlcv, daily_ohlcv_to_weekly_ohlcv
 
 appname = "market_data_processor"
 version = "0.0.1"
@@ -24,6 +26,7 @@ run_time_stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 # [2] - https://investor.vanguard.com/investment-products/etfs/profile/voo
 
 tickers = ["VOO"]
+# tickers = ["SPY"]
 start_date = date(2024, 12, 1)
 end_date = date(2025, 6, 3)
 
@@ -42,11 +45,15 @@ daily_df = daily_df.stack(level=1).rename_axis(['Date', 'Ticker']).reset_index(l
 
 daily_file = os.path.join(user_data_dir, f"daily_{run_time_stamp}.csv")
 
-print(f"storing daily SPY returns in {daily_file}")
+print(f"storing daily returns in {daily_file}")
 daily_df.to_csv(daily_file)
 
 monthly_df = daily_ohlcv_to_month_end_ohlcv(daily_df)
-
 monthly_file = os.path.join(user_data_dir, f"monthly_{run_time_stamp}.csv")
-print(f"storing monthly SPY returns in {monthly_file}")
+print(f"storing monthly returns in {monthly_file}")
 monthly_df.to_csv(monthly_file)
+
+weekly_df = daily_ohlcv_to_weekly_ohlcv(daily_df)
+weekly_file = os.path.join(user_data_dir, f"weekly_{run_time_stamp}.csv")
+print(f"stroing weekly returns in {weekly_file}")
+weekly_df.to_csv(weekly_file)
