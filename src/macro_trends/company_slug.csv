@@ -1,0 +1,19 @@
+# Background:
+# The url for the net income of Johnson & Johnson on macrotrends website is
+# https://macrotrends.net/stocks/charts/JNJ/johnson-johnson/net-income
+# Here "JNJ" is the ticker and "johnson-johnson" is the "company slug". The
+# latter refers to a shortened, often hyphenated version of a company's full
+# name. It is used to create a URL-friendly "slug" from the company's actual
+# name.
+#
+# Why:
+# For a given a ticker, use this file to get the corresponding company slug
+# and then build the url.
+#
+# specific to | macrotrends website urls
+#
+# sort the entries by ticker ascending
+ticker,slug
+AAPL,apple
+JNJ,johnson-johnson
+NET,cloudflare
