@@ -1,0 +1,9 @@
+# [Raju, 2025-07-25]
+# Black's default is to use double quotes for consistency and other reasons
+# (like avoiding escaping apostrophes in English text). So it converts single
+# quotes to double quotes. This option tells black not to convert the double
+# quotes to single quotes but apply other formatting changes as usual. This
+# flag is intended as an "adoption helper" for existing projects, not
+# necessarily for new ones. But I am using it anyway!
+[tool.black]
+skip-string-normalization = true

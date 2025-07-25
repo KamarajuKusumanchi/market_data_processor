@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
+
 def scrape_macrotrends_to_csv(url, output_filename):
     """
     Scrapes financial data from a Macrotrends URL by directly parsing the HTML table
@@ -32,7 +33,9 @@ def scrape_macrotrends_to_csv(url, output_filename):
     # Find the main data table
     table = soup.find('table', {'class': 'table'})
     if not table:
-        print("Could not find the main data table with class 'table'. Please inspect the page's HTML structure.")
+        print(
+            "Could not find the main data table with class 'table'. Please inspect the page's HTML structure."
+        )
         return
 
     # Extract table rows from tbody
@@ -67,13 +70,14 @@ def scrape_macrotrends_to_csv(url, output_filename):
                 row_data.append(net_income_value)
             except ValueError:
                 # If parsing fails, append the original text for inspection
-                print(f"Warning: Could not parse net income value '{net_income_text}'. Appending as string.")
+                print(
+                    f"Warning: Could not parse net income value '{net_income_text}'. Appending as string."
+                )
                 row_data.append(net_income_text)
             data_rows.append(row_data)
 
-    if len(data_rows) == 1: # Only contains the header row, no actual data
+    if len(data_rows) == 1:  # Only contains the header row, no actual data
         print("No data rows found in the <tbody> besides the custom header.")
-
 
     # Write data to CSV
     try:
@@ -83,6 +87,7 @@ def scrape_macrotrends_to_csv(url, output_filename):
         print(f"Data successfully dumped to {output_filename}")
     except IOError as e:
         print(f"Error writing to CSV file {output_filename}: {e}")
+
 
 if __name__ == "__main__":
     url = "https://macrotrends.net/stocks/charts/NET/cloudflare/net-income"
