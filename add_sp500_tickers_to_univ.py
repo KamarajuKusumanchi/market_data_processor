@@ -7,7 +7,7 @@
 import pandas as pd
 import sys
 
-from sp500_tickers import get_sp500_table
+from src.scripts.sp500_tickers import get_sp500_table
 
 
 def add_sp500_tickers(univ):

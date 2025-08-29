@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 
-from sp500_tickers import get_sp500_tickers
+from src.scripts.sp500_tickers import get_sp500_tickers
 
 
 def calculate_sharpe_ratio(tickers, start_date, end_date, risk_free_rate=0.01):
