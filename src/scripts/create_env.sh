@@ -10,6 +10,7 @@ env_name=market_data_processor
 # Show the creation time of the current  environment
 conda env list | grep -v '^#' | grep $env_name | perl -lane 'print $F[-1]' | xargs ls -lrt1d
 
+# Todo 2026-02-22: Check if $env_name exists before trying to remove it.
 conda env remove --name $env_name
 conda env create -f $env_file_path
 
