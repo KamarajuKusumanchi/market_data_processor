@@ -9,7 +9,11 @@
 
 name: market_data_processor
 channels:
-  - defaults
+  # One 2026-02-22, I decided to switch everything to conda-forge instead of
+  # the defaults channel.
+  #
+  # - defaults
+  - conda-forge
 dependencies:
   - python=3.13
     # The 'ME' offset does not work in pandas 2.1.4 but works in 2.2.2
@@ -50,25 +54,15 @@ dependencies:
     # pdfannots outputs annotations in markdown format. Use pandoc to convert them into zimwiki format.
     # pandoc is used by jupyter-lab to export ipynb file to pdf
   - pandoc
-    # Asof 2023-06-29, conda-forge has streamlit version 1.24.0 (the latest
-    # version) but the defaults channel has version 1.16.0.
-    # To pull streamlit from conda-forge, use
-    # - conda-forge::streamlit
-    # But while creating the environment with both defaults and conda-forge
-    # channels on a machine running Debian stable (bookwork) with 1 GB RAM, 1
-    # core, I encounted
-    #   Collecting package metadata (repodata.json): - Killed
-    # So, decided to only use the defaults channel for now for streamlit.
   - streamlit
     # Jupytext is useful to version control jupyter notebooks.
-    # Upstream website (https://github.com/mwouts/jupytext) suggests to use conda-forge
-  - conda-forge::jupytext
+  - jupytext
     # to compare package versions
   - packaging
     # autocommand is a transitive dependency that is getting picked up from one
-    # of the PyPi dependencies. Adding it here so that it is downloaded from
-    # conda-forge itself.
-  - conda-forge::autocommand
+    # of the PyPi dependencies. Adding it here so that it is downloaded before
+    # hitting PyPi.
+  - autocommand
     # On Windows, I experienced errors such as
     # >>> import requests
     # >>> requests.get('http://www.github.com', proxies={'https_proxy': 'myhttp.proxy.com', 'http_proxy': 'myhttps.proxy.com'})
@@ -79,7 +73,7 @@ dependencies:
     #   certificate verify failed: unable to get local issuer certificate
     #   (_ssl.c:1028)')))
     # installing pip-system-certs solved that.
-  - conda-forge::pip-system-certs
+  - pip-system-certs
   - pip:
       # yfinance library is the easiest and fastest way to download historical
       # stock prices. Asof 2025-06-06, it is not available in the defaults
