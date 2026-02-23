@@ -16,13 +16,9 @@ def test_find_files_with_date():
             "report_20231026.txt",
             "document_20230515_final.pdf",
             "log_20240101.csv",
-            "20220228_backup.zip"
+            "20220228_backup.zip",
         ]
-        non_dated_files = [
-            "notes.md",
-            "image.jpg",
-            "plain_text.txt"
-        ]
+        non_dated_files = ["notes.md", "image.jpg", "plain_text.txt"]
 
         # Create the dummy files in the temporary directory
         for filename in dated_files + non_dated_files:
