@@ -74,6 +74,8 @@ dependencies:
     #   (_ssl.c:1028)')))
     # installing pip-system-certs solved that.
   - pip-system-certs
+    # Need scipy for functions such as scipy.stats.chatterjeexi
+  - scipy
   - pip:
       # yfinance library is the easiest and fastest way to download historical
       # stock prices. Asof 2025-06-06, it is not available in the defaults
