@@ -53,10 +53,11 @@ def fetch_articles(
         BASE_URL, params={"pageNumber": page}, cookies=cookies, headers=headers
     )
     if response.status_code == 403:
-        print("Request failed. Maybe cookies are outdated or invalid.")
-        print(f"Try updating your cookies in {cookies_file}")
+        print("Request failed. Maybe cookies are outdated or invalid.", file=sys.stderr)
+        print(f"Try updating your cookies in {cookies_file}", file=sys.stderr)
         print(
-            f"See {cookies_file}.example for instructions on how to get your cookies."
+            f"See {cookies_file}.example for instructions on how to get your cookies.",
+            file=sys.stderr,
         )
         raise typer.Exit(code=1)
     response.raise_for_status()
