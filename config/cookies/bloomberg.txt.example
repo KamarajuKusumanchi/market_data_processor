@@ -1,0 +1,17 @@
+# To view the cookies used by Chrome:
+# 1. Go to bloomberg.com and log in
+# 2. Open DevTools (Press F12 or right-click anywhere on the page → Inspect)
+# 3. Go to Application tab → Cookies → https://www.bloomberg.com
+#    This will list all the cookies. We need to copy all of them.
+#
+# To copy all the cookies from Chrome:
+# 1. Go to bloomberg.com and log in
+# 2. Open DevTools (Press F12 or right-click anywhere on the page → Inspect)
+# 3. Click the Console tab
+# 4. Scroll to the bottom and click next to the > prompt
+#    If the prompt is not visible, press Ctrl+L to clear the console.
+# 5. Type: copy(document.cookie) and press Enter
+# 6. Nothing visible will happen — the cookies are silently copied to your clipboard
+# 7. Copy this file to bloomberg.txt and replace the line below with your cookies
+# 8. Make sure bloomberg.txt is in .gitignore
+exp_pref=AMER; country_code=US; session_id=019cf470-801b-704c-b64a-a0545ebb507c; agent_id=019cf470-801b-714f-a27c-d49fdd80bf6c; session_key=57f73f635f0ed3f0f1b2a1278bd0e46d9693303f; bbgconsentstring=req1fun1pad1; _sp_su=false; __stripe_mid=45afbe05-b17e-40ac-b2e6-5d24c902a7c11b8975; __sppvid=487defff-f77a-4636-926c-4f7b860236fb; _pxvid=7e0e966c-20de-11f1-bab5-707e6952aacc; pxcts=4e9987a4-2ab2-11f1-9f74-a80162d59139; _pxhd=NQTBvQB3bQmyCM0Zr1t0OdvHg35dNs0WOlZgkCLhXOev5lPHk9J/CGp7EG/USB1JvdA76TW9dvSilSYrtCWtng==:r4YP28wO2SLHdeLakghDTZnDuYQIuGI2/73aToO3NYjHGb1Qc6WDrGVvS9gQzWYIrmd4GyuAAb4NMcEVWeES25YI/Mp45OD6a4WbmRtOmNo=; _reg-csrf-token=uyOq7yvS-jlc0aBWLWeeuPqrWYz_bCDg_7qw; _px2=eyJ1IjoiMDFiOTQ1MjAtMmIwYy0xMWYxLWJmZjktMzljOWJiNmJhYmZjIiwidiI6IjdlMGU5NjZjLTIwZGUtMTFmMS1iYWI1LTcwN2U2OTUyYWFjYyIsInQiOjE3NzQ3NDY5MTQ0MTcsImgiOiIwNWFkNmUzYjkyMTkwZTA5NDg3ZmY5ZjZhNGU4NjdjMGVkODUwMzZhNWE0YjMwNDQ4YzQ3MDM3YzJjNmQzYTZmIn0=; _pxde=f461ef906851c86918401f20b64f13753906338cf1ffae4e8831ecb15e7c5d10:eyJ0aW1lc3RhbXAiOjE3NzQ3NDY2MTQ0MDIsImZfa2IiOjAsImlwY19pZCI6W119

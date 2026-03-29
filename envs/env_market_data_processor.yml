@@ -76,6 +76,7 @@ dependencies:
   - pip-system-certs  # [linux]
     # Need scipy for functions such as scipy.stats.chatterjeexi
   - scipy
+  - typer
   - pip:
       # asof | 2026-03-20
       #

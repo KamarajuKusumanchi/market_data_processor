@@ -29,3 +29,6 @@ __pycache__
 
 # Pycharm files
 .idea/
+
+# config files
+config/cookies/bloomberg.txt
