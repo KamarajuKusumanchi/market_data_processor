@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-# script to get urls of Matt Levine's articles
+# script to fetch Matt Levine's Money Stuff article URLs from Bloomberg.
 import sys
 
 import requests
@@ -73,6 +73,7 @@ def fetch_articles(page: int, cookies: dict, headers: dict) -> pd.DataFrame:
 
 @app.command()
 def main(page: int = typer.Option(default=1, help="Page number to fetch")):
+    """Fetch Matt Levine's Money Stuff article URLs from Bloomberg."""
     df = fetch_articles(page, cookies, headers)
     pd.set_option("display.max_colwidth", None)
     pd.set_option("display.max_rows", None)
