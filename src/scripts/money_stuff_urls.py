@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 # script to fetch Matt Levine's Money Stuff article URLs from Bloomberg.
+# Sample usage:
+# rajulocal@hogwarts ~/work/github/market_data/money_stuff_urls
+#  % $market_data_processor/src/scripts/money_stuff_urls.py --page 1 > 1.txt
 import sys
 
 import requests
