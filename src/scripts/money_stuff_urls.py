@@ -43,7 +43,9 @@ cookies_file = (
 cookies = load_cookies(cookies_file)
 
 
-def fetch_articles(page: int, cookies: dict, headers: dict, cookies_file: Path) -> pd.DataFrame:
+def fetch_articles(
+    page: int, cookies: dict, headers: dict, cookies_file: Path
+) -> pd.DataFrame:
     # Ex:- If page is 3, this will fetch
     # https://www.bloomberg.com/lineup-next/api/author/ARbTQlRLRjE/matthew-s-levine?pageNumber=3
 
@@ -53,7 +55,9 @@ def fetch_articles(page: int, cookies: dict, headers: dict, cookies_file: Path) 
     if response.status_code == 403:
         print("Request failed. Maybe cookies are outdated or invalid.")
         print(f"Try updating your cookies in {cookies_file}")
-        print(f"See {cookies_file}.example for instructions on how to get your cookies.")
+        print(
+            f"See {cookies_file}.example for instructions on how to get your cookies."
+        )
         raise typer.Exit(code=1)
     response.raise_for_status()
 
