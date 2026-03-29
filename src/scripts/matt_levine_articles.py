@@ -10,7 +10,11 @@ from pathlib import Path
 import project_root
 from src.utils.DataFrameUtils import to_fwf
 
-app = typer.Typer()
+# If you do
+#   app = typer.Typer()
+# help is printed only for --help. But I want help to be printed for
+# both -h and --help.
+app = typer.Typer(context_settings={"help_option_names": ["-h", "--help"]})
 
 BASE_URL = (
     "https://www.bloomberg.com/lineup-next/api/author/ARbTQlRLRjE/matthew-s-levine"
