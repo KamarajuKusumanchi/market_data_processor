@@ -97,7 +97,23 @@ dependencies:
       #
       # Another quirk is that python-certifi-win32 is available only on pip but
       # not on conda-forge.
-    - python-certifi-win32  # [win]
+      #
+      # today | 2026-04-14
+      # On the LG Gram 15 laptop running Windows, I got this error
+      #
+      # $ python
+      # Fatal Python error: init_import_site: Failed to import the site module
+      # ...
+      #   File "C:\Users\raju\.conda\envs\market_data_processor\Lib\site-packages\certifi_win32\wincerts.py", line 43, in get_pems
+      #     return [ssl.DER_cert_to_PEM_cert(der_cert) for der_cert in ssl_context.get_ca_certs(binary_form=True)]
+      #                                                                ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+      #   File "C:\Users\raju\.conda\envs\market_data_processor\Lib\site-packages\pip\_vendor\truststore\_api.py", line 212, in get_ca_certs
+      #     raise NotImplementedError()
+      # NotImplementedError
+      #
+      # The error goes away if I remove python-certifi_win32 package from the
+      # environment.
+    # - python-certifi-win32  # [win]
       # yfinance library is the easiest and fastest way to download historical
       # stock prices. Asof 2025-06-06, it is not available in the defaults
       # channel. It is packaged in conda-forge. But one of its dependencies
