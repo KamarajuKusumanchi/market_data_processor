@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+today | 2026-05-11
+
+potential color scheme to visualize the weekly contest winners:
+
+^ element ^ color ^
+| previous week level | black |
+| bull predictions | green |
+| bear predictions | red |
+| current week level | purple |
+| winner(s) | gold |
+-------------------------------------------------------------------------------
