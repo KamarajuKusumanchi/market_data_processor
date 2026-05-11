@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+
+# changelog:
+# * 2026-05-11 initial version is from @claude.
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
