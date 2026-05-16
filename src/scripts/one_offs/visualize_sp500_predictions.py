@@ -34,8 +34,8 @@ title  = "SP500 predictions for\n2026-05-11 through 2026-05-15"
 # Market reference lines: key → (color, display label)
 MARKET_STYLES = {
     "previous_week_close": ("black",     "prev close"),
-    "current_week_min":    ("goldenrod", "week min"),
-    "current_week_max":    ("goldenrod", "week max"),
+    "current_week_min":    ("darkgoldenrod", "week min"),
+    "current_week_max":    ("darkgoldenrod", "week max"),
 }
 
 # ---------------------------------------------------------------------------
