@@ -3,6 +3,8 @@
 # changelog:
 # * 2026-05-11 initial version is from @claude.
 
+# tags | weekly contest
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
