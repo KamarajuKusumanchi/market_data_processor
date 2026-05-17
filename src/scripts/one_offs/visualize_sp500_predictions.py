@@ -23,7 +23,7 @@ market = pd.DataFrame({
 
 predictions = pd.DataFrame({
     "name":  ["Suraj", "Ankit", "Arun", "Pritesh", "Sanjay", "Raju",
-              "Dylon", "Nirav", "Anil", "Kiran", "Nitin", "Sunil", "Sri"],
+              "Dylon", "Nirav", "Anil", "Kiran", "Nitin", "Sunil", "Sri [X]"],
     "level": [735,     742,     726,    720,      723,     734,
               730,     748,     726,    716,      730,     745,    738],
 })
