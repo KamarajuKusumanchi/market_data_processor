@@ -17,9 +17,12 @@ import numpy as np
 # Data
 # ---------------------------------------------------------------------------
 
+title  = "SP500 predictions for\n2026-05-11 through 2026-05-15"
+
 market = pd.DataFrame({
     "name":  ["previous_week_close", "current_week_min", "current_week_max"],
-    "level": [737.62,                 731.83,             749.53],
+    "level": [737.62,                 np.nan,             np.nan],
+    # "level": [737.62,                 731.83,             749.53],
 })
 
 predictions = pd.DataFrame({
@@ -29,8 +32,8 @@ predictions = pd.DataFrame({
               730,     748,     726,    716,      730,     745,    738],
 })
 
-winner = "Nirav"
-title  = "SP500 predictions for\n2026-05-11 through 2026-05-15"
+winner = "TBD"
+# winner = "Nirav"
 
 # Market reference lines: key → (color, display label)
 MARKET_STYLES = {
