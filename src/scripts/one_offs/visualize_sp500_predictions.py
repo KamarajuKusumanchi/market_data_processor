@@ -5,6 +5,7 @@
 # * 2026-05-16 enhancements: added market df, bull/bear coloring, winner highlight.
 # * 2026-05-16 enhancements: market reference lines (previous_week_close, current_week_min/max).
 # * 2026-05-16 refactor: modularized into focused functions.
+# * 2026-05-18 fix: draw_market_lines skips entries whose level is np.nan.
 
 # tags | weekly contest
 
@@ -90,6 +91,8 @@ def draw_ticks(ax, level_ticks, name_levels):
 def draw_market_lines(ax, market, styles):
     for name, (color, label) in styles.items():
         lvl = market_level(name)
+        if np.isnan(lvl):
+            continue
         ax.plot([-LINE_HALF, LINE_HALF], [lvl, lvl],
                 color=color, lw=1.0, linestyle="--", zorder=1)
         ax.annotate(f"{label} {lvl:.2f}", xy=(LINE_HALF, lvl),
