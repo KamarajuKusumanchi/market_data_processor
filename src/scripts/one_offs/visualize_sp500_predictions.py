@@ -13,6 +13,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+from src.utils.dokuwiki_parser import parse_dokuwiki_table
+
 # ---------------------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------------------
@@ -25,12 +27,33 @@ market = pd.DataFrame({
     # "level": [737.62,                 731.83,             749.53],
 })
 
-predictions = pd.DataFrame({
-    "name":  ["Suraj", "Ankit", "Arun", "Pritesh", "Sanjay", "Raju",
-              "Dylon", "Nirav", "Anil", "Kiran", "Nitin", "Sunil", "Sri [X]"],
-    "level": [735,     742,     726,    720,      723,     734,
-              730,     748,     726,    716,      730,     745,    738],
-})
+predictions_table = '''
+^ name     ^ level ^
+| Raju     | 743 |
+| Satya    | 728 |
+| Suraj    | 737 |
+| Sri      | 725 |
+| Dylon    | 740 |
+| Arun     | 748 |
+| Manoj    | 720 |
+| Ankit    | 743 |
+| Nitin    | 749.50 |
+| Sanjay   | 750 |
+| Nirav    | 751 |
+| Anil     | 736 |
+| Sunil    | 720 |
+| Kiran    | 735 |
+'''
+
+# predictions = pd.DataFrame({
+#     "name":  ["Suraj", "Ankit", "Arun", "Pritesh", "Sanjay", "Raju",
+#               "Dylon", "Nirav", "Anil", "Kiran", "Nitin", "Sunil", "Sri [X]"],
+#     "level": [735,     742,     726,    720,      723,     734,
+#               730,     748,     726,    716,      730,     745,    738],
+# })
+
+predictions = parse_dokuwiki_table(predictions_table)
+predictions["level"] = pd.to_numeric(predictions["level"])
 
 winner = "TBD"
 # winner = "Nirav"
