@@ -125,7 +125,7 @@ def draw_market_lines(ax, market, styles):
                     xytext=(LINE_HALF + 0.02, lvl),
                     fontsize=9, va="center", ha="left", color=color)
 
-YLIM_PAD = 4  # points of whitespace above/below the outermost tick
+YLIM_PAD = 2  # points of whitespace above/below the outermost tick
 
 def style_axes(ax, ticks, title):
     # x=0 sits at axes fraction x_lo / (x_hi - x_lo) = 0.3 / 1.5 = 0.2
