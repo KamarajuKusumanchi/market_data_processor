@@ -17,11 +17,11 @@ import numpy as np
 # Data
 # ---------------------------------------------------------------------------
 
-title  = "SP500 predictions for\n2026-05-11 through 2026-05-15"
+title  = "SP500 predictions for\n2026-05-18 through 2026-05-22"
 
 market = pd.DataFrame({
     "name":  ["previous_week_close", "current_week_min", "current_week_max"],
-    "level": [737.62,                 np.nan,             np.nan],
+    "level": [739.17,                 np.nan,             np.nan],
     # "level": [737.62,                 731.83,             749.53],
 })
 
