@@ -1,6 +1,10 @@
 import pandas as pd
 import re
 
+# changelog:
+# * 2026-05-18: initial version is from @claude.
+
+
 def parse_dokuwiki_table(table_str: str) -> pd.DataFrame:
     # Sample usage:
     # table = """
