@@ -91,7 +91,7 @@ def build_groups(predictions, winner, bull_threshold):
 def yticks(levels):
     """Min, max, and every multiple-of-5 in between."""
     lo, hi = int(levels.min()), int(levels.max())
-    mid = list(range(int(np.ceil(lo / 5) * 5), int(np.floor(hi / 5) * 5) + 1, 5))
+    mid = list(range(int(np.floor(lo / 5) * 5), int(np.ceil(hi / 5) * 5), 5))
     return sorted(set([lo, hi] + mid))
 
 # ---------------------------------------------------------------------------
@@ -125,6 +125,8 @@ def draw_market_lines(ax, market, styles):
                     xytext=(LINE_HALF + 0.02, lvl),
                     fontsize=9, va="center", ha="left", color=color)
 
+YLIM_PAD = 4  # points of whitespace above/below the outermost tick
+
 def style_axes(ax, ticks, title):
     # x=0 sits at axes fraction x_lo / (x_hi - x_lo) = 0.3 / 1.5 = 0.2
     ax.text(0.2, 1.03, title,
@@ -134,7 +136,7 @@ def style_axes(ax, ticks, title):
     ax.text(1.18, 0.5, "Name", transform=ax.transAxes, color="gray",
             va="center", ha="center", rotation=-90)
     ax.set_xlim(-0.3, 1.2)
-    ax.set_ylim(713, 751)
+    ax.set_ylim(ticks[0] - YLIM_PAD, ticks[-1] + YLIM_PAD)
     ax.set_yticks(ticks)
     ax.tick_params(axis="y", left=True, right=False, length=5,
                    direction="out", color="gray", labelcolor="gray", pad=4)
