@@ -19,30 +19,29 @@ from src.utils.dokuwiki_parser import parse_dokuwiki_table
 # Data
 # ---------------------------------------------------------------------------
 
-title  = "SP500 predictions for\n2026-05-18 through 2026-05-22"
+title  = "SP500 predictions for\n2026-05-25 through 2026-05-29"
 
 market = pd.DataFrame({
     "name":  ["previous_week_close", "current_week_min", "current_week_max"],
     # "level": [739.17,                 np.nan,             np.nan],
-    "level": [739.17,                 731.53,             748.94],
+    # "level": [739.17,                 731.53,             748.94],
+    "level": [745.64,                 np.nan,             np.nan],
 })
 
 predictions_table = '''
 ^ name     ^ level ^
-| Raju     | 743 |
-| Satya    | 728 |
-| Suraj    | 737 |
-| Sri      | 725 |
-| Dylon    | 740 |
-| Arun     | 748 |
-| Manoj    | 720 |
-| Ankit    | 743 |
-| Nitin    | 749.50 |
+| Sanju    | 760 |
+| Raju     | 750 |
+| Arun     | 755 |
+| Ankit    | 756 |
+| Nirav    | 753 |
 | Sanjay   | 750 |
-| Nirav    | 751 |
-| Anil     | 736 |
-| Sunil    | 720 |
-| Kiran    | 735 |
+| Kiran    | 740 |
+| Nitin    | 741.70 |
+| Anil     | 753 |
+| Sunil [x] | 755 |
+| Manoj [x] | 741 |
+| Sri [x]   | 745 |
 '''
 
 # predictions = pd.DataFrame({
