@@ -13,6 +13,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
+# sys_path sets up the project root in sys.path so project-level imports work.
+# noqa: F401 suppresses the "imported but unused" linter warning — sys_path is
+# imported purely for its side effect of updating sys.path, not for any symbol it exports.
+import sys_path  # noqa: F401
+
 from src.utils.dokuwiki_parser import parse_dokuwiki_table
 
 # ---------------------------------------------------------------------------
