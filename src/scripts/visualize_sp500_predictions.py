@@ -6,6 +6,7 @@
 # * 2026-05-16 enhancements: market reference lines (previous_week_close, current_week_min/max).
 # * 2026-05-16 refactor: modularized into focused functions.
 # * 2026-05-18 fix: draw_market_lines skips entries whose level is np.nan.
+# * 2026-06-07 fix: yticks now includes market levels so out-of-range lines (e.g. week min) are always visible.
 
 # tags | weekly contest
 
@@ -160,7 +161,9 @@ def style_axes(ax, ticks, title):
 def main():
     bull_threshold = market_level("previous_week_close")
     groups = build_groups(predictions, winner, bull_threshold)
-    ticks  = yticks(groups["level"])
+    market_levels = market["level"].dropna()
+    all_levels = pd.concat([groups["level"], market_levels], ignore_index=True)
+    ticks  = yticks(all_levels)
 
     fig, ax = plt.subplots(figsize=(4, 8))
 
