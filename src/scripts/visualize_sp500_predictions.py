@@ -25,7 +25,7 @@ from src.utils.dokuwiki_parser import parse_dokuwiki_table
 # Data
 # ---------------------------------------------------------------------------
 
-title  = "SP500 predictions for\n2026-06-01 through 2026-06-05"
+title  = "SP500 predictions for\n2026-06-08 through 2026-06-12"
 
 market = pd.DataFrame({
     "name":  ["previous_week_close", "current_week_min", "current_week_max"],
@@ -34,24 +34,26 @@ market = pd.DataFrame({
     # "level": [745.64,                 np.nan,             np.nan],
     # "level": [745.64,                 748.22,             758.08],
     # "level": [756.48,                 np.nan,             np.nan],
-    "level": [756.48,                 735.53,             760.40],
+    # "level": [756.48,                 735.53,             760.40],
+    "level": [737.55,                 722.59,             746.90],
 })
 
 predictions_table = '''
 ^ name     ^ level ^
-| Raju     | 752 |
-| Arun     | 756 |
-| Sanjay   | 761 |
-| Sri      | 757 |
-| Anil     | 758 |
-| Suraj    | 756 |
-| Manoj    | 761 |
-| Dylon    | 753 |
-| Sanju    | 740 |
-| Kiran    | 750 |
-| Ankit    | 763 |
-| Sunil    | 765 |
-| Nitin    | 743 |
+| Raju     | 733 |
+| Manoj    | 737 |
+| Suraj    | 730 |
+| Sanju    | 765 |
+| Kiran    | 735 |
+| Ankit    | 745 |
+| Sanjay   | 730 |
+| Nitin    | 725 |
+| Arun     | 752 |
+| Sunil    | 750 |
+| Nirav    | 742 |
+| Satya    | 727 |
+| Anil     | 736 |
+| Sri      | 732 |
 '''
 
 # predictions = pd.DataFrame({
@@ -65,7 +67,7 @@ predictions = parse_dokuwiki_table(predictions_table)
 predictions["level"] = pd.to_numeric(predictions["level"])
 
 # winner = "TBD"
-winner = "Sanju"
+winner = "Nitin"
 
 # Market reference lines: key → (color, display label)
 MARKET_STYLES = {
