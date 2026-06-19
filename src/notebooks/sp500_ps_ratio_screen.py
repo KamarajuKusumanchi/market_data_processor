@@ -27,9 +27,11 @@ df = pd.read_csv("https://raw.githubusercontent.com/datasets/s-and-p-500-compani
 df
 
 # %%
+threshold = 10
+
 total = len(df)
-gte_mask = df['Price/Sales'] >= 10
-lt_mask = df['Price/Sales'] < 10
+gte_mask = df['Price/Sales'] >= threshold
+lt_mask = df['Price/Sales'] < threshold
 nan_mask = df['Price/Sales'].isna()
 gte = gte_mask.sum()
 lt = lt_mask.sum()
@@ -41,16 +43,16 @@ assert total == gte + lt + nan, (
 
 counts_dict = {
     'total': total,
-    'greater_or_equal_10': gte,
-    'less_than_10': lt,
+    f'greater_or_equal_{threshold}': gte,
+    'less_than_{threshold}': lt,
     'nan': nan,
-    'pct_greater_or_equal_10': round((gte / total) * 100, 2),
-    'pct_less_than_10': round((lt / total) * 100, 2),
+    f'pct_greater_or_equal_{threshold}': round((gte / total) * 100, 2),
+    f'pct_less_than_{threshold}': round((lt / total) * 100, 2),
     'pct_nan': round((nan / total) * 100, 2)
 }
 
 counts = pd.Series(counts_dict)
-print("==== S&P 500 P/S Ratio Distribution ====")
+print(f"==== S&P 500 Comapny Count by P/S Ratio (threshold = {threshold}) ====")
 print(counts.to_string(dtype=False))
 
 # %%
@@ -76,6 +78,10 @@ sales_dict = {
 }
 sales = pd.Series(sales_dict)
 print()
-print("==== S&P 500 Aggregate Financials & Index P/S ====")
-print(sales.to_string(dtype=False))
+print("==== S&P 500 financials (valid P/S only) ====")
+print(sales[['total_sales_tn_$', 'total_market_cap_tn_$', 'index_price_to_sales']].to_string(dtype=False))
+
+print()
+print("==== Excluded Companies (NaN P/S) ====")
+print(sales[['excluded_companies_nan_ps', 'excluded_market_cap_tn_$']].to_string(dtype=False))
 
