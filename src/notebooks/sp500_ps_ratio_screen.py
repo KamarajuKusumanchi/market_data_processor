@@ -44,7 +44,7 @@ assert total == gte + lt + nan, (
 counts_dict = {
     'total': total,
     f'greater_or_equal_{threshold}': gte,
-    'less_than_{threshold}': lt,
+    f'less_than_{threshold}': lt,
     'nan': nan,
     f'pct_greater_or_equal_{threshold}': round((gte / total) * 100, 2),
     f'pct_less_than_{threshold}': round((lt / total) * 100, 2),
@@ -52,7 +52,7 @@ counts_dict = {
 }
 
 counts = pd.Series(counts_dict)
-print(f"==== S&P 500 Comapny Count by P/S Ratio (threshold = {threshold}) ====")
+print(f"==== S&P 500 Company Count by P/S Ratio (threshold = {threshold}) ====")
 print(counts.to_string(dtype=False))
 
 # %%
