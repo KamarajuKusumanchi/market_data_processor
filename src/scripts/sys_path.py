@@ -22,11 +22,13 @@ from pathlib import Path
 # This module is imported for its side effect only — it exports nothing.
 __all__ = []
 
+
 def find_project_root(start: Path, landmark: str = ".project-root") -> Path:
     for parent in [start, *start.parents]:
         if (parent / landmark).exists():
             return parent
     raise FileNotFoundError(f"Could not find {landmark} above {start}")
+
 
 project_root = str(find_project_root(Path(__file__).parent))
 if project_root not in sys.path:
