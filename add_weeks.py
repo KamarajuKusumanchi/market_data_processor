@@ -54,7 +54,7 @@ def run_code():
     df = pd.DataFrame({'offset': offset})
     df['cum_offset'] = df['offset'].cumsum()
     df['date'] = datetime.strptime(dt, fmt) + \
-        pd.to_timedelta(df['cum_offset'], 'w')
+        pd.to_timedelta(df['cum_offset'], 'W')
     if debug:
         print(df)
     # This is adding one space at the beginning.
