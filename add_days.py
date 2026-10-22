@@ -53,7 +53,7 @@ def run_code():
     df = pd.DataFrame({'offset': offset})
     df['cum_offset'] = df['offset'].cumsum()
     df['date'] = datetime.strptime(dt, fmt) + \
-        pd.to_timedelta(df['cum_offset'], 'd')
+        pd.to_timedelta(df['cum_offset'], 'D')
     if debug:
         print(df)
     print(df['date'].dt.strftime(fmt).to_string(index=False))
